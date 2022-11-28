@@ -1,5 +1,6 @@
 package com.crm.javaCRM.model;
 
+import java.util.Collection;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -24,14 +25,13 @@ public abstract class Persona {
 	private String email;
 	private String direccion;
 	private String telefono;
-	private List<Contacto> contactos;
+	private Collection<Contacto> contactos;
 
 	protected Persona() {
 
 	}
 
-	public Persona(long id, String nombre, String email, String direccion, String telefono, List<Contacto> contactos) {
-		this.id = id;
+	public Persona(String nombre, String email, String direccion, String telefono, List<Contacto> contactos) {
 		this.nombre = nombre;
 		this.email = email;
 		this.direccion = direccion;
@@ -49,6 +49,7 @@ public abstract class Persona {
 		this.id = id;
 	}
 
+	@NotBlank
 	public String getNombre() {
 		return nombre;
 	}
@@ -57,7 +58,6 @@ public abstract class Persona {
 		this.nombre = nombre;
 	}
 
-	@NotBlank
 	@Column(unique = true)
 	@Pattern(regexp = "^([A-z0-9 ]{1,}<[A-z0-9]{1,}@[A-z0-9.]{0,}>|[A-z0-9]{1,}@[A-z0-9.]{0,})$")
 	public String getEmail() {
@@ -76,7 +76,6 @@ public abstract class Persona {
 		this.direccion = direccion;
 	}
 
-	@NotBlank
 	public String getTelefono() {
 		return telefono;
 	}
@@ -88,11 +87,11 @@ public abstract class Persona {
 	@Valid
 	@NotNull
 	@OneToMany(mappedBy = "persona")
-	public List<Contacto> getContactos() {
+	public Collection<Contacto> getContactos() {
 		return contactos;
 	}
 
-	public void setContactos(List<Contacto> contactos) {
+	public void setContactos(Collection<Contacto> contactos) {
 		this.contactos = contactos;
 	}
 
