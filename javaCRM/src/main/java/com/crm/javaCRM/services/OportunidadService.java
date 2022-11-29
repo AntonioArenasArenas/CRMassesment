@@ -67,4 +67,9 @@ public class OportunidadService {
 		return editada;
 	}
 
+	public void delete(int i) {
+		
+
+	}
+
 }

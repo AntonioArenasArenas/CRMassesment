@@ -25,6 +25,22 @@ class JavaCrmApplicationTests {
 	OportunidadService oportunidadService;
 
 	@Test
+	void listOportunidadPass() {
+		String name = this.oportunidadService.listOne(1).getNombre();
+		assertEquals(name, "Antonio Arenas Arenas");
+	}
+
+	@Test
+	void listOportunidadWrongIdFail() {
+		try {
+			String name = this.oportunidadService.listOne(16).getNombre();
+			assertEquals(name, "Antonio Arenas Arenas");
+		} catch (IllegalArgumentException e) {
+			assertEquals(e.getMessage(), "No existe una oportunidad con ese ID");
+		}
+	}
+
+	@Test
 	void crearOportunidadPass() {
 		String nombre = "Marcial";
 		String email = "marcial@solera.com";
@@ -123,4 +139,62 @@ class JavaCrmApplicationTests {
 		Oportunidad editada = this.oportunidadService.editar(o);
 		assertEquals(editada.getNombre(), "Triple A");
 	}
+
+	@Test
+	void editarOportunidadCorreoIncorrectoFail() {
+		Oportunidad editada = null;
+		Oportunidad o = this.oportunidadService.listOne(1);
+		o.setEmail("@@@.2@@");
+		try {
+			editada = this.oportunidadService.editar(o);
+		} catch (Exception e) {
+
+		}
+		assertEquals(editada, null);
+
+	}
+
+	@Test
+	void editarOportunidadTelefonoExistenteFail() {
+		Oportunidad editada = null;
+		Oportunidad o = this.oportunidadService.listOne(2);
+		o.setTelefono("638453173");
+		try {
+			editada = this.oportunidadService.editar(o);
+		} catch (Exception e) {
+		}
+		assertEquals(editada, null);
+	}
+
+	@Test
+	void editarOportunidadNombreVacioFail() {
+		Oportunidad editada = null;
+		Oportunidad o = this.oportunidadService.listOne(1);
+		o.setNombre("");
+		try {
+			editada = this.oportunidadService.editar(o);
+		} catch (Exception e) {
+		}
+		assertEquals(editada, null);
+	}
+
+	@Test
+	void borrarOportunidadPass() {
+		try {
+			this.oportunidadService.delete(1);
+		} catch (Exception e) {
+
+		}
+		assertEquals(this.oportunidadService.list().size(), 3);
+	}
+
+//	@Test
+//	void borrarOportunidadIdNotExistFail() {
+//		try {
+//			this.oportunidadService.delete(50);
+//		} catch (Exception e) {
+//			
+//		}
+//		assertEquals(this.oportunidadService.list().size(), 4);
+//	}
 }

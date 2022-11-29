@@ -3,7 +3,6 @@ package com.crm.javaCRM.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -27,7 +26,7 @@ public class OportunidadController {
 	}
 
 	@GetMapping("/oportunidades/{id}")
-	Object one(@PathVariable Integer id) {
+	Object uno(@PathVariable Integer id) {
 		Oportunidad o;
 		try {
 			o = oportunidadService.listOne(id);
@@ -38,7 +37,7 @@ public class OportunidadController {
 	}
 
 	@PostMapping("/oportunidades")
-	Object newEmployee(@RequestBody Oportunidad nuevaOportunidad) {
+	Object nuevaOportunidad(@RequestBody Oportunidad nuevaOportunidad) {
 		try {
 			Oportunidad creada = this.oportunidadService.crearOportunidad(nuevaOportunidad);
 			return creada;
@@ -47,19 +46,16 @@ public class OportunidadController {
 		}
 	}
 
-//	@PutMapping("/employees/{id}")
-//	Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
-//
-//		return repository.findById(id).map(employee -> {
-//			employee.setName(newEmployee.getName());
-//			employee.setRole(newEmployee.getRole());
-//			return repository.save(employee);
-//		}).orElseGet(() -> {
-//			newEmployee.setId(id);
-//			return repository.save(newEmployee);
-//		});
-//	}
-//
+	@PutMapping("/oportunidades/{id}")
+	Object actualizarOportunidad(@RequestBody Oportunidad nuevaOportunidad, @PathVariable Integer id) {
+		try {
+			Oportunidad editada = this.oportunidadService.editar(nuevaOportunidad);
+			return editada;
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+
 //	@DeleteMapping("/employees/{id}")
 //	void deleteEmployee(@PathVariable Long id) {
 //		repository.deleteById(id);
