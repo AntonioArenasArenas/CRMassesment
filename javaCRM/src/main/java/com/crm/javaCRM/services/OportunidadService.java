@@ -60,8 +60,11 @@ public class OportunidadService {
 	}
 
 	public Oportunidad editar(Oportunidad o) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Oportunidad> op = this.oportunidadRepository.findById(o.getId());
+		Assert.isTrue(op.isPresent(), "No existe el id");
+		Oportunidad editada = null;
+		editada = this.oportunidadRepository.save(o);
+		return editada;
 	}
 
 }

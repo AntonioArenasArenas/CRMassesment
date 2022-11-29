@@ -43,7 +43,7 @@ public class OportunidadController {
 			Oportunidad creada = this.oportunidadService.crearOportunidad(nuevaOportunidad);
 			return creada;
 		} catch (IllegalArgumentException i) {
-			return null;
+			return i.getMessage();
 		}
 	}
 
