@@ -19,7 +19,7 @@ import com.crm.javaCRM.model.Oportunidad;
 import com.crm.javaCRM.services.OportunidadService;
 
 @SpringBootTest
-class JavaCrmApplicationTests {
+class JavaCrmApplicationOportunidadTest {
 
 	@Autowired
 	OportunidadService oportunidadService;
