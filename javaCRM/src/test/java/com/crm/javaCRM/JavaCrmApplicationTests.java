@@ -178,6 +178,8 @@ class JavaCrmApplicationTests {
 		assertEquals(editada, null);
 	}
 
+	// Los métodos de borrado pueden falsear el resultado por lo que deben
+	// ejecutarse individualmente
 	@Test
 	void borrarOportunidadPass() {
 		try {
@@ -188,13 +190,13 @@ class JavaCrmApplicationTests {
 		assertEquals(this.oportunidadService.list().size(), 3);
 	}
 
-//	@Test
-//	void borrarOportunidadIdNotExistFail() {
-//		try {
-//			this.oportunidadService.delete(50);
-//		} catch (Exception e) {
-//			
-//		}
-//		assertEquals(this.oportunidadService.list().size(), 4);
-//	}
+	@Test
+	void borrarOportunidadIdNotExistFail() {
+		try {
+			this.oportunidadService.delete(50);
+		} catch (Exception e) {
+
+		}
+		assertEquals(this.oportunidadService.list().size(), 4);
+	}
 }

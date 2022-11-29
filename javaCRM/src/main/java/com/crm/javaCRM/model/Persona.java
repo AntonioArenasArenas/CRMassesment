@@ -16,6 +16,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 
+/**
+ * Clase abstracta que define a las personas en general. Por decisión de diseño
+ * cada clase hija tendrá su propia tabla en la base de datos
+ */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Persona {

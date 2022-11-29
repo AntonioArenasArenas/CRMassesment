@@ -16,6 +16,10 @@ import com.crm.javaCRM.repositories.ClienteRepository;
 import com.crm.javaCRM.repositories.ContactoRepository;
 import com.crm.javaCRM.repositories.OportunidadRepository;
 
+/**
+ * Clase CommandLineRuner que rellena nuestra base de datos con datos de prueba,
+ * se ejecuta con en run del proyecto
+ */
 @Component
 public class DatosCommandLineRunner implements CommandLineRunner {
 	OportunidadRepository repository;

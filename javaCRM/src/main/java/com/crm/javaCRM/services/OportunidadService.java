@@ -21,6 +21,11 @@ public class OportunidadService {
 
 	// Metodos CRUD
 
+	/**
+	 * Método para el listado de todos los objetos Oportunidad
+	 * 
+	 * @return listado de objetos oportunidad
+	 */
 	public List<Oportunidad> list() {
 
 		List<Oportunidad> lista = new LinkedList<>();
@@ -28,6 +33,13 @@ public class OportunidadService {
 		return lista;
 	}
 
+	/**
+	 * Obtención de una Oportunidad a partir de su ID
+	 * 
+	 * @param opId ID de la oportunidad
+	 * @return la oportunidad obtenida
+	 * @exception IllegalArgumentException si no existe el ID en cuestión
+	 */
 	public Oportunidad listOne(Integer opId) {
 		Optional<Oportunidad> o;
 		o = oportunidadRepository.findById(opId);
@@ -36,6 +48,15 @@ public class OportunidadService {
 
 	}
 
+	/**
+	 * Guardado de una oportunidad en la base de datos
+	 * 
+	 * @param o oportunidad a guardar
+	 * @return la oportunidad una vez ya guardada
+	 * @exception IllegalArgumentException si la oportunidad tiene el nombre vacio o
+	 *                                     su email o teléfono coinciden con uno ya
+	 *                                     existente en la base de datos
+	 */
 	public Oportunidad crearOportunidad(Oportunidad o) {
 
 		// Comprobamos que no es la misma persona creada dos veces, para ello miramos el
@@ -59,6 +80,14 @@ public class OportunidadService {
 		return creada;
 	}
 
+	/**
+	 * Actualización de una Oportunidad, usa el ID de la oportunidad pasada por
+	 * parámetros como el ID con el que guardar
+	 * 
+	 * @param o Oportunidad con los datos ya actualizados
+	 * @return la oportunidad actualizada tras ser guardada en la base de datos
+	 * @exception IllegalArgumentException si no existe el ID en cuestión
+	 */
 	public Oportunidad editar(Oportunidad o) {
 		Optional<Oportunidad> op = this.oportunidadRepository.findById(o.getId());
 		Assert.isTrue(op.isPresent(), "No existe el id");
@@ -67,9 +96,17 @@ public class OportunidadService {
 		return editada;
 	}
 
-	public void delete(int i) {
-		
+	/**
+	 * Método para el borrado de una oportunidad a partir de su id
+	 * 
+	 * @param id ID de la oportunidad que debe ser borrada
+	 * @exception IllegalArgumentException si no existe el ID en cuestión
+	 */
+	public void delete(Integer id) {
 
+		Optional<Oportunidad> op = this.oportunidadRepository.findById(id);
+		Assert.isTrue(op.isPresent(), "No existe el id");
+		this.oportunidadRepository.deleteById(id);
 	}
 
 }
