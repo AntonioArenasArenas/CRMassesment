@@ -59,4 +59,9 @@ public class OportunidadService {
 		return creada;
 	}
 
+	public Oportunidad editar(Oportunidad o) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

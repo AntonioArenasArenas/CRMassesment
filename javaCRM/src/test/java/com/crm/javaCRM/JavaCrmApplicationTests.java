@@ -116,4 +116,11 @@ class JavaCrmApplicationTests {
 		assertEquals(creada, null);
 	}
 
+	@Test
+	void editarOportunidadPass() {
+		Oportunidad o = this.oportunidadService.listOne(1);
+		o.setNombre("Triple A");
+		Oportunidad editada = this.oportunidadService.editar(o);
+		assertEquals(editada.getNombre(), "Triple A");
+	}
 }
