@@ -133,6 +133,26 @@ class JavaCrmApplicationOportunidadTest {
 	}
 
 	@Test
+	void crearOportunidadNullNameWrong() {
+		String email = "antonio.arenas@solera.com";
+		Oportunidad o = new Oportunidad();
+		Oportunidad creada = null;
+		o.setNombre(null);
+		o.setEmail(email);
+		List<Contacto> contactos = new LinkedList<>();
+		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+				new Date(System.currentTimeMillis() - 1), o));
+		o.setContactos(contactos);
+		try {
+			creada = oportunidadService.crearOportunidad(o);
+
+		} catch (IllegalArgumentException e) {
+			assertEquals(e.getMessage(), "El cliente no tiene nombre!");
+		}
+		assertEquals(creada, null);
+	}
+
+	@Test
 	void editarOportunidadPass() {
 		Oportunidad o = this.oportunidadService.listOne(1);
 		o.setNombre("Triple A");

@@ -63,6 +63,7 @@ public class OportunidadService {
 		// email y el teléfono que son las dos propiedades que pueden definir la
 		// unicidad de una persona
 		Assert.notNull(o, "Objeto pasado sin parámetros");
+		Assert.notNull(o.getNombre(), "El cliente no tiene nombre!");
 		Assert.isTrue(!o.getNombre().isBlank(), "El cliente no tiene nombre!");
 		Oportunidad creada = null;
 		String email = o.getEmail();
@@ -75,6 +76,9 @@ public class OportunidadService {
 		if (telefono != null) {
 			obbdd = oportunidadRepository.findByTelefono(telefono);
 			Assert.isTrue(obbdd.isEmpty(), "Este usuario ya está en la base de datos!");
+		}
+		if (o.getContactos() == null) {
+			o.setContactos(new LinkedList<>());
 		}
 		creada = oportunidadRepository.save(o);
 		return creada;

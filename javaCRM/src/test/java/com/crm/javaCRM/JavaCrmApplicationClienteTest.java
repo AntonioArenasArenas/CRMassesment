@@ -1,11 +1,21 @@
 package com.crm.javaCRM;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.crm.javaCRM.model.Cliente;
+import com.crm.javaCRM.model.Contacto;
+import com.crm.javaCRM.model.MetodoContacto;
 import com.crm.javaCRM.services.ClienteService;
 
 @SpringBootTest
@@ -17,13 +27,13 @@ class JavaCrmApplicationClienteTest {
 	// Aunque es el primer cliente, tiene ID 5 porque todos son personas y hay 4
 	// oportunidades creadas
 	@Test
-	void listOportunidadPass() {
+	void listClientePass() {
 		String name = this.clienteService.listOne(5).getNombre();
 		assertEquals(name, "Pepe");
 	}
 
 	@Test
-	void listOportunidadWrongIdFail() {
+	void listClienteWrongIdFail() {
 		try {
 			String name = this.clienteService.listOne(16).getNombre();
 			assertEquals(name, "Pepe");
@@ -31,99 +41,153 @@ class JavaCrmApplicationClienteTest {
 			assertEquals(e.getMessage(), "No existe un cliente con ese ID");
 		}
 	}
-//
-//	@Test
-//	void crearOportunidadPass() {
-//		String nombre = "Marcial";
-//		String email = "marcial@solera.com";
-//		String direccion = "Calle Pepe 26";
-//		String telefono = "123456987";
-//		String fecha = "07/10/22";
-//		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy");
-//
-//		List<Contacto> contactos = new LinkedList<>();
-//		Oportunidad o = new Oportunidad();
-//		Oportunidad creada = null;
-//		o.setNombre(nombre);
-//		o.setTelefono(telefono);
-//		o.setDireccion(direccion);
-//		o.setEmail(email);
-//		o.setContactos(contactos);
-//		creada = oportunidadService.crearOportunidad(o);
-//		try {
-//			o.getContactos().add(
-//					new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones", df.parse(fecha), o));
-//		} catch (ParseException e) {
-//			e.printStackTrace();
-//		}
-//
-//		assertNotNull(creada);
-//
-//	}
-//
-//	@Test
-//	void crearOportunidadSameTelephoneWrong() {
-//		String nombre = "Jesus";
-//		String telefono = "638453173";
-//		Oportunidad o = new Oportunidad();
-//		Oportunidad creada = null;
-//		o.setNombre(nombre);
-//		o.setTelefono(telefono);
-//		List<Contacto> contactos = new LinkedList<>();
-//		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
-//				new Date(System.currentTimeMillis() - 1), o));
-//		o.setContactos(contactos);
-//		try {
-//			creada = oportunidadService.crearOportunidad(o);
-//
-//		} catch (IllegalArgumentException e) {
-//			assertEquals(e.getMessage(), "Este usuario ya está en la base de datos!");
-//		}
-//		assertEquals(creada, null);
-//	}
-//
-//	@Test
-//	void crearOportunidadSameEmailWrong() {
-//		String nombre = "Jesus";
-//		String email = "antonio.arenas@solera.com";
-//		Oportunidad o = new Oportunidad();
-//		Oportunidad creada = null;
-//		o.setNombre(nombre);
-//		o.setEmail(email);
-//		List<Contacto> contactos = new LinkedList<>();
-//		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
-//				new Date(System.currentTimeMillis() - 1), o));
-//		o.setContactos(contactos);
-//		try {
-//			creada = oportunidadService.crearOportunidad(o);
-//
-//		} catch (IllegalArgumentException e) {
-//			assertEquals(e.getMessage(), "Este usuario ya está en la base de datos!");
-//		}
-//		assertEquals(creada, null);
-//	}
-//
-//	@Test
-//	void crearOportunidadBlankNameWrong() {
-//		String nombre = "";
-//		String email = "antonio.arenas@solera.com";
-//		Oportunidad o = new Oportunidad();
-//		Oportunidad creada = null;
-//		o.setNombre(nombre);
-//		o.setEmail(email);
-//		List<Contacto> contactos = new LinkedList<>();
-//		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
-//				new Date(System.currentTimeMillis() - 1), o));
-//		o.setContactos(contactos);
-//		try {
-//			creada = oportunidadService.crearOportunidad(o);
-//
-//		} catch (IllegalArgumentException e) {
-//			assertEquals(e.getMessage(), "El cliente no tiene nombre!");
-//		}
-//		assertEquals(creada, null);
-//	}
-//
+
+	@Test
+	void crearClientePass() {
+		String nombre = "Cliente 1";
+		String email = "cliente1@solera.com";
+		String direccion = "Calle Pepe 26";
+		String telefono = "004630057";
+		String fecha = "07/10/22";
+		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy");
+
+		List<Contacto> contactos = new LinkedList<>();
+		Cliente c = new Cliente();
+		Cliente creada = null;
+		c.setNombre(nombre);
+		c.setTelefono(telefono);
+		c.setDireccion(direccion);
+		c.setEmail(email);
+		c.setContactos(contactos);
+		c.setDni("77845374A");
+		c.setProductos(new ArrayList<String>());
+		creada = clienteService.crearCliente(c);
+		try {
+			c.getContactos().add(
+					new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones", df.parse(fecha), c));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		assertNotNull(creada);
+
+	}
+
+	@Test
+	void crearClienteSameTelephoneWrong() {
+		String nombre = "Jesus";
+		String telefono = "6587452396";
+		Cliente c = new Cliente();
+		Cliente creada = null;
+		c.setNombre(nombre);
+		c.setTelefono(telefono);
+		c.setDni("77845374C");
+		c.setProductos(new ArrayList<String>());
+		List<Contacto> contactos = new LinkedList<>();
+		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+				new Date(System.currentTimeMillis() - 1), c));
+		c.setContactos(contactos);
+		try {
+			creada = clienteService.crearCliente(c);
+
+		} catch (IllegalArgumentException e) {
+			assertEquals(e.getMessage(), "Este usuario ya está en la base de datos!");
+		}
+		assertEquals(creada, null);
+	}
+
+	@Test
+	void crearClienteSameEmailWrong() {
+		String nombre = "Jesus";
+		String email = "emailvalido1@gmail.com";
+		Cliente c = new Cliente();
+		Cliente creada = null;
+		c.setNombre(nombre);
+		c.setEmail(email);
+		c.setDni("77845374D");
+		c.setProductos(new ArrayList<String>());
+		List<Contacto> contactos = new LinkedList<>();
+		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+				new Date(System.currentTimeMillis() - 1), c));
+		c.setContactos(contactos);
+		try {
+			creada = clienteService.crearCliente(c);
+
+		} catch (IllegalArgumentException e) {
+			assertEquals(e.getMessage(), "Este usuario ya está en la base de datos!");
+		}
+		assertEquals(creada, null);
+	}
+
+	@Test
+	void crearClienteBlankNameWrong() {
+		String nombre = "";
+		String email = "antonio.arenas@solera.com";
+		Cliente c = new Cliente();
+		Cliente creada = null;
+		c.setNombre(nombre);
+		c.setEmail(email);
+		c.setDni("77845374A");
+		c.setProductos(new ArrayList<String>());
+		List<Contacto> contactos = new LinkedList<>();
+		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+				new Date(System.currentTimeMillis() - 1), c));
+		c.setContactos(contactos);
+		try {
+			creada = clienteService.crearCliente(c);
+
+		} catch (IllegalArgumentException e) {
+			assertEquals(e.getMessage(), "El cliente no tiene nombre!");
+		}
+		assertEquals(creada, null);
+	}
+
+	@Test
+	void crearClienteSameDNIWrong() {
+		String nombre = "Paises Bajos ha quedado primera de grupo";
+		String email = "manolitografotas@solera.com";
+		Cliente c = new Cliente();
+		Cliente creada = null;
+		c.setNombre(nombre);
+		c.setEmail(email);
+		c.setDni("78965214E");
+		c.setProductos(new ArrayList<String>());
+		List<Contacto> contactos = new LinkedList<>();
+		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+				new Date(System.currentTimeMillis() - 1), c));
+		c.setContactos(contactos);
+		try {
+			creada = clienteService.crearCliente(c);
+
+		} catch (IllegalArgumentException e) {
+			assertEquals(e.getMessage(), "Este usuario ya está en la base de datos!");
+		}
+		assertEquals(creada, null);
+	}
+
+	@Test
+	void crearClienteBlankDNIWrong() {
+		String nombre = "Paises Bajos ha quedado primera de grupo";
+		String email = "manolitografotas@solera.com";
+		Cliente c = new Cliente();
+		Cliente creada = null;
+		c.setNombre(nombre);
+		c.setEmail(email);
+		c.setDni("");
+		c.setProductos(new ArrayList<String>());
+		List<Contacto> contactos = new LinkedList<>();
+		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+				new Date(System.currentTimeMillis() - 1), c));
+		c.setContactos(contactos);
+		try {
+			creada = clienteService.crearCliente(c);
+
+		} catch (IllegalArgumentException e) {
+			assertEquals(e.getMessage(), "El cliente no tiene DNI!");
+		}
+		assertEquals(creada, null);
+	}
+
 //	@Test
 //	void editarOportunidadPass() {
 //		Oportunidad o = this.oportunidadService.listOne(1);

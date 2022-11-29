@@ -18,7 +18,7 @@ public class Cliente extends Persona {
 	private int edad;
 	private Collection<String> productos;
 
-	protected Cliente() {
+	public Cliente() {
 
 	}
 
