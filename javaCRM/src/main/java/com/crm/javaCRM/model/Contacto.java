@@ -4,6 +4,8 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -17,7 +19,7 @@ import jakarta.validation.constraints.NotNull;
 @Entity
 public class Contacto {
 
-	private long id;
+	private Integer id;
 	private MetodoContacto metodo;
 	private String motivo;
 	private Date fecha;
@@ -27,7 +29,7 @@ public class Contacto {
 
 	}
 
-	public Contacto( MetodoContacto metodo, String motivo, Date fecha, Persona persona) {
+	public Contacto(MetodoContacto metodo, String motivo, Date fecha, Persona persona) {
 		this.metodo = metodo;
 		this.motivo = motivo;
 		this.fecha = fecha;
@@ -36,11 +38,11 @@ public class Contacto {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -73,6 +75,7 @@ public class Contacto {
 	}
 
 	@ManyToOne(optional = false)
+	@JsonIgnore
 	public Persona getPersona() {
 		return persona;
 	}

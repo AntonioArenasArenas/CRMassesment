@@ -2,6 +2,7 @@ package com.crm.javaCRM.model;
 
 import java.util.Collection;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -17,6 +18,10 @@ public class Cliente extends Persona {
 
 	}
 
+	/**
+	 * Es probable que no se necesite el constructor con parámetros de Persona al
+	 * ser un cliente una oportunidad ya guardada que se convierte en cliente
+	 */
 	public Cliente(String dni, int edad, Collection<String> productos) {
 		super();
 		this.dni = dni;
@@ -25,6 +30,7 @@ public class Cliente extends Persona {
 	}
 
 	@NotBlank
+	@Column(unique = true)
 	public String getDni() {
 		return dni;
 	}

@@ -20,7 +20,7 @@ import jakarta.validation.constraints.Pattern;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Persona {
 
-	private long id;
+	private Integer id;
 	private String nombre;
 	private String email;
 	private String direccion;
@@ -41,11 +41,11 @@ public abstract class Persona {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	public long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -59,7 +59,7 @@ public abstract class Persona {
 	}
 
 	@Column(unique = true)
-	@Pattern(regexp = "^([A-z0-9 ]{1,}<[A-z0-9]{1,}@[A-z0-9.]{0,}>|[A-z0-9]{1,}@[A-z0-9.]{0,})$")
+	@Pattern(regexp = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$")
 	public String getEmail() {
 		return email;
 	}
@@ -76,6 +76,7 @@ public abstract class Persona {
 		this.direccion = direccion;
 	}
 
+	@Column(unique = true)
 	public String getTelefono() {
 		return telefono;
 	}
