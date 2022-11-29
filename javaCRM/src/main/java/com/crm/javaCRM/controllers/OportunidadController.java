@@ -37,10 +37,15 @@ public class OportunidadController {
 		}
 	}
 
-//	@PostMapping("/oportunidades")
-//	Object newEmployee(@RequestBody Oportunidad nuevaOportunidad) {
-//		return repository.save(newEmployee);
-//	}
+	@PostMapping("/oportunidades")
+	Object newEmployee(@RequestBody Oportunidad nuevaOportunidad) {
+		try {
+			Oportunidad creada = this.oportunidadService.crearOportunidad(nuevaOportunidad);
+			return creada;
+		} catch (IllegalArgumentException i) {
+			return null;
+		}
+	}
 
 //	@PutMapping("/employees/{id}")
 //	Employee replaceEmployee(@RequestBody Employee newEmployee, @PathVariable Long id) {
