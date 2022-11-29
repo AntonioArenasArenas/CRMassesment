@@ -1,23 +1,12 @@
 package com.crm.javaCRM;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.crm.javaCRM.model.Contacto;
-import com.crm.javaCRM.model.MetodoContacto;
-import com.crm.javaCRM.model.Oportunidad;
 import com.crm.javaCRM.services.ClienteService;
-import com.crm.javaCRM.services.OportunidadService;
 
 @SpringBootTest
 class JavaCrmApplicationClienteTest {
@@ -25,11 +14,11 @@ class JavaCrmApplicationClienteTest {
 	@Autowired
 	ClienteService clienteService;
 
-//	@Test
-//	void listOportunidadPass() {
-//		String name = this.oportunidadService.listOne(1).getNombre();
-//		assertEquals(name, "Antonio Arenas Arenas");
-//	}
+	@Test
+	void listOportunidadPass() {
+		String name = this.clienteService.listOne(1).getNombre();
+		assertEquals(name, "Pepe");
+	}
 //
 //	@Test
 //	void listOportunidadWrongIdFail() {

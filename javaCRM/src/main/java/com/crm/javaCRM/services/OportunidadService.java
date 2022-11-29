@@ -106,7 +106,7 @@ public class OportunidadService {
 
 		Optional<Oportunidad> op = this.oportunidadRepository.findById(id);
 		Assert.isTrue(op.isPresent(), "No existe el id");
-		// TODO borrar todos los contactos
+		// TODO borrar todos los contactos??
 		this.oportunidadRepository.deleteById(id);
 	}
 
