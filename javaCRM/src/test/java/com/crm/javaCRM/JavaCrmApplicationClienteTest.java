@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.crm.javaCRM.model.Contacto;
 import com.crm.javaCRM.model.MetodoContacto;
 import com.crm.javaCRM.model.Oportunidad;
+import com.crm.javaCRM.services.ClienteService;
 import com.crm.javaCRM.services.OportunidadService;
 
 @SpringBootTest
