@@ -2,13 +2,14 @@ package com.crm.javaCRM.services;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 import com.crm.javaCRM.model.Cliente;
-import com.crm.javaCRM.model.Oportunidad;
 import com.crm.javaCRM.repositories.ClienteRepository;
 
 @Service
@@ -31,9 +32,11 @@ public class ClienteService {
 		return lista;
 	}
 
-	public Cliente listOne(int i) {
-		// TODO Auto-generated method stub
-		return null;
+	public Cliente listOne(Integer id) {
+		Optional<Cliente> c;
+		c = clienteRepository.findById(id);
+		Assert.isTrue(c.isPresent(), "No existe un cliente con ese ID");
+		return c.get();
 	}
 
 }

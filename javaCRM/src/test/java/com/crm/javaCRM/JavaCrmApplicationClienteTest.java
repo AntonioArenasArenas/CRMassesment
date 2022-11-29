@@ -14,21 +14,23 @@ class JavaCrmApplicationClienteTest {
 	@Autowired
 	ClienteService clienteService;
 
+	// Aunque es el primer cliente, tiene ID 5 porque todos son personas y hay 4
+	// oportunidades creadas
 	@Test
 	void listOportunidadPass() {
-		String name = this.clienteService.listOne(1).getNombre();
+		String name = this.clienteService.listOne(5).getNombre();
 		assertEquals(name, "Pepe");
 	}
-//
-//	@Test
-//	void listOportunidadWrongIdFail() {
-//		try {
-//			String name = this.oportunidadService.listOne(16).getNombre();
-//			assertEquals(name, "Antonio Arenas Arenas");
-//		} catch (IllegalArgumentException e) {
-//			assertEquals(e.getMessage(), "No existe una oportunidad con ese ID");
-//		}
-//	}
+
+	@Test
+	void listOportunidadWrongIdFail() {
+		try {
+			String name = this.clienteService.listOne(16).getNombre();
+			assertEquals(name, "Pepe");
+		} catch (IllegalArgumentException e) {
+			assertEquals(e.getMessage(), "No existe un cliente con ese ID");
+		}
+	}
 //
 //	@Test
 //	void crearOportunidadPass() {
