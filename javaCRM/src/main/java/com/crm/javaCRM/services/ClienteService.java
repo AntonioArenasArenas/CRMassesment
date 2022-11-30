@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import com.crm.javaCRM.model.Cliente;
+import com.crm.javaCRM.model.Oportunidad;
 import com.crm.javaCRM.repositories.ClienteRepository;
 
 @Service
@@ -85,6 +86,23 @@ public class ClienteService {
 		}
 		creado = clienteRepository.save(c);
 		return creado;
+	}
+
+	/**
+	 * Método utilizado para crear un cliente a partir de una oportunidad
+	 * 
+	 * @param o Oportunidad original
+	 * @param c Cliente con los datos extras de la clase Cliente
+	 */
+	public Cliente crearClienteOportunidad(Oportunidad o, Cliente c) {
+
+		// Pasamos los campos correspondientes de la oportunidad al cliente
+		c.setOportunidad(o);
+
+		// TODO recorrer los contactos de o y actualizarlos a cliente guardando primero
+		// cliente
+		return null;
+
 	}
 
 }

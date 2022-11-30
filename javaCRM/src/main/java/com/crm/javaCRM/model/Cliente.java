@@ -58,4 +58,12 @@ public class Cliente extends Persona {
 		this.productos = productos;
 	}
 
+	public void setOportunidad(Oportunidad o) {
+		this.setContactos(o.getContactos());
+		this.setDireccion(o.getDireccion());
+		this.setEmail(o.getEmail());
+		this.setNombre(o.getNombre());
+		this.setTelefono(o.getTelefono());
+	}
+
 }

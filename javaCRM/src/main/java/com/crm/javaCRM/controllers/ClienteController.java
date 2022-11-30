@@ -50,22 +50,21 @@ public class ClienteController {
 		}
 	}
 
-//	/**
-//	 * Método que crea una oportunidad nueva en la base de datos
-//	 * 
-//	 * @param nuevaOportunidad oportunidad a guardar en la base de datos
-//	 * @return la Oportunidad ya creada o un mensaje de error si se produce algún
-//	 *         fallo
-//	 */
-//	@PostMapping("/oportunidades")
-//	Object nuevaOportunidad(@RequestBody Oportunidad nuevaOportunidad) {
-//		try {
-//			Oportunidad creada = this.oportunidadService.crearOportunidad(nuevaOportunidad);
-//			return creada;
-//		} catch (IllegalArgumentException i) {
-//			return i.getMessage();
-//		}
-//	}
+	/**
+	 * Método que crea un cliente nuevo en la base de datos
+	 * 
+	 * @param nuevoCliente cliente a guardar en la base de datos
+	 * @return el cliente ya creada o un mensaje de error si se produce algún fallo
+	 */
+	@PostMapping("/clientes")
+	Object nuevoCliente(@RequestBody Cliente nuevoCliente) {
+		try {
+			Cliente creada = this.clienteService.crearCliente(nuevoCliente);
+			return creada;
+		} catch (IllegalArgumentException i) {
+			return i.getMessage();
+		}
+	}
 //
 //	/**
 //	 * Método para modificar una oportunidad según su ID
