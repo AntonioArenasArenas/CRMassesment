@@ -2,6 +2,7 @@ package com.crm.javaCRM;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -299,10 +300,11 @@ class JavaCrmApplicationClienteTest {
 	@Test
 	void crearClienteDeOportunidadPass() {
 		Cliente creado = null;
+		Cliente datosIncompletos = new Cliente("77845374K", 50, new LinkedList<>());
 		try {
-			creado = this.clienteService.crearClienteOportunidad(1);
+			creado = this.clienteService.crearClienteOportunidad(1, datosIncompletos);
 		} catch (IllegalArgumentException i) {
-
+			System.out.println(i.getMessage());
 		}
 		assertNotNull(creado);
 		assertEquals(3, this.oportunidadService.list().size());
@@ -312,13 +314,13 @@ class JavaCrmApplicationClienteTest {
 	@Test
 	void crearClienteDeOportunidadWrongIdFail() {
 		Cliente creado = null;
+		Cliente datosIncompletos = new Cliente("77845374K", 50, new LinkedList<>());
 		try {
-			creado = this.clienteService.crearClienteOportunidad(50);
+			creado = this.clienteService.crearClienteOportunidad(50, datosIncompletos);
 		} catch (IllegalArgumentException i) {
 
 		}
-		assertNotNull(creado);
-		assertEquals(3, this.oportunidadService.list().size());
-		assertEquals(5, this.clienteService.list().size());
+		assertNull(creado);
 	}
+
 }

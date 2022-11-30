@@ -64,6 +64,25 @@ public class ClienteController {
 	}
 
 	/**
+	 * Método que crea un cliente nuevo en la base de datos a partir de una
+	 * oportunidad
+	 * 
+	 * @param nuevoCliente cliente a guardar en la base de datos únicamente con los
+	 *                     datos correspondientes a los clientes
+	 * @param id           ID de la oportunidad de la que cogemos los datos para el
+	 *                     nuevo cliente
+	 * @return el cliente ya creado o un mensaje de error si se produce algún fallo
+	 */
+	@PostMapping("/clientes/{id}")
+	Object nuevoCliente(@RequestBody Cliente nuevoCliente, @PathVariable Integer id) {
+		try {
+			return this.clienteService.crearClienteOportunidad(id, nuevoCliente);
+		} catch (IllegalArgumentException i) {
+			return i.getMessage();
+		}
+	}
+
+	/**
 	 * Método para modificar un cliente según su ID
 	 * 
 	 * @param nuevaOportunidad la oportunidad con los datos actualizados

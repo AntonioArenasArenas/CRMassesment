@@ -22,8 +22,10 @@ public class Cliente extends Persona {
 
 	}
 
-//	 Es probable que no se necesite el constructor con parámetros de Persona al
-//	 ser un cliente una oportunidad ya guardada que se convierte en cliente
+	public Cliente(String name, String email, String direccion, String telefono, Collection<Contacto> contactos) {
+		super(name, email, direccion, telefono, contactos);
+	}
+
 	public Cliente(String dni, int edad, Collection<String> productos) {
 		super();
 		this.dni = dni;

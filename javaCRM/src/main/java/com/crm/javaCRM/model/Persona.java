@@ -1,7 +1,6 @@
 package com.crm.javaCRM.model;
 
 import java.util.Collection;
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -35,7 +34,7 @@ public abstract class Persona {
 
 	}
 
-	protected Persona(String nombre, String email, String direccion, String telefono, List<Contacto> contactos) {
+	protected Persona(String nombre, String email, String direccion, String telefono, Collection<Contacto> contactos) {
 		this.nombre = nombre;
 		this.email = email;
 		this.direccion = direccion;

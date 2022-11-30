@@ -10,8 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import com.crm.javaCRM.model.Cliente;
+import com.crm.javaCRM.model.Contacto;
 import com.crm.javaCRM.model.Oportunidad;
+import com.crm.javaCRM.model.Persona;
 import com.crm.javaCRM.repositories.ClienteRepository;
+import com.crm.javaCRM.repositories.PersonaRepository;
 
 @Service
 @Transactional
@@ -19,6 +22,15 @@ public class ClienteService {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
+
+	@Autowired
+	private PersonaRepository personaRepository;
+
+	@Autowired
+	private ContactoService contactoService;
+
+	@Autowired
+	OportunidadService oportunidadService;
 
 	// Metodos CRUD
 
@@ -93,13 +105,35 @@ public class ClienteService {
 	 * 
 	 * @param id ID de la oportunidad que se convertirá en cliente
 	 */
-	public Cliente crearClienteOportunidad(Integer id) {
+	public Cliente crearClienteOportunidad(Integer id, Cliente c) {
 
 		// Pasamos los campos correspondientes de la oportunidad al cliente
+		Optional<Persona> persona = this.personaRepository.findById(id);
+		Assert.isTrue(persona.isPresent(), "No existe esta oportunidad");
+		Assert.isInstanceOf(Oportunidad.class, persona.get(), "Esta persona no es una oportunidad");
+		Persona oportunidadBase = persona.get();
+		// Seteamos las propiedades en el nuevo cliente y lo creamos sin contactos
+		c.setNombre(oportunidadBase.getNombre());
+		c.setEmail(oportunidadBase.getEmail());
+		c.setDireccion(oportunidadBase.getDireccion());
+		c.setTelefono(oportunidadBase.getTelefono());
+		c.setContactos(new LinkedList<>());
+		Cliente creado = null;
+		creado = this.crearCliente(c);
 
-		// TODO recorrer los contactos de o y actualizarlos a cliente guardando primero
-		// cliente
-		return null;
+		// Actualizamos la persona para cada Contacto
+
+		for (Contacto contactoAntiguo : oportunidadBase.getContactos()) {
+			contactoAntiguo.setPersona(creado);
+			Contacto nuevoContacto = this.contactoService.editar(contactoAntiguo, id);
+			creado.getContactos().add(nuevoContacto);
+		}
+		// Actualizamos los contactos del cliente
+		creado = this.clienteRepository.save(creado);
+
+		// Borramos la oportunidad que ya hemos convertido en cliente
+		this.oportunidadService.delete(id);
+		return creado;
 
 	}
 
