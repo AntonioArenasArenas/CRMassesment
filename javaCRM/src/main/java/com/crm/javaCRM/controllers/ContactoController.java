@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crm.javaCRM.model.Contacto;
@@ -42,6 +44,16 @@ public class ContactoController {
 			return c;
 		} catch (IllegalArgumentException i) {
 			return i.getMessage();
+		}
+	}
+
+	@PostMapping("/contactos/{id}")
+	Object crearContacto(@PathVariable Integer id, @RequestBody Contacto c) {
+		try {
+			Contacto creado = this.contactoService.crearContacto(c, id);
+			return creado;
+		} catch (IllegalArgumentException e) {
+			return e.getMessage();
 		}
 	}
 }

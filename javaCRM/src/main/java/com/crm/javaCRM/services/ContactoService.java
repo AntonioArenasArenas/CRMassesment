@@ -10,7 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import com.crm.javaCRM.model.Contacto;
+import com.crm.javaCRM.model.Persona;
 import com.crm.javaCRM.repositories.ContactoRepository;
+import com.crm.javaCRM.repositories.PersonaRepository;
 
 @Service
 @Transactional
@@ -18,6 +20,9 @@ public class ContactoService {
 
 	@Autowired
 	private ContactoRepository contactoRepository;
+
+	@Autowired
+	private PersonaRepository personaRepository;
 
 	// Metodos CRUD
 
@@ -46,9 +51,40 @@ public class ContactoService {
 		return c.get();
 	}
 
-	public Contacto crearContacto(Contacto contacto, int i) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Creación de un contacto
+	 * 
+	 * @param contacto el contacto que queremos crear, se pasará con la Persona
+	 *                 puesta a null
+	 * @param id       id de la persona a la que pertenece el contacto
+	 * 
+	 * @return el contacto ya creado
+	 * 
+	 * @exception IllegalArgumentException si el ID de la persona no existe, el
+	 *                                     motivo está vacío, el método está vacío o
+	 *                                     la fecha esta vacía
+	 */
+	public Contacto crearContacto(Contacto contacto, Integer id) {
+		// Comprobación ID
+		Optional<Persona> personaContacto = personaRepository.findById(id);
+		Assert.isTrue(personaContacto.isPresent(), "No existe el usuario relacionado con este contacto!");
+
+		// Comprobación método
+		Assert.notNull(contacto.getMetodo(), "No existe un método de contacto");
+
+		// Comprobación motivo
+		Assert.notNull(contacto.getMotivo(), "No existe un motivo de contacto");
+		Assert.isTrue(!contacto.getMotivo().isBlank(), "No existe un motivo de contacto");
+
+		// Comprobacion de fecha
+		Assert.notNull(contacto.getFecha(), "No existe fecha para este contacto!");
+
+		// Actualización de persona y guardado del contacto
+		Persona personaGuardar = personaContacto.get();
+		personaGuardar.getContactos().add(contacto);
+		Persona guardada = this.personaRepository.save(personaGuardar);
+		contacto.setPersona(guardada);
+		return this.contactoRepository.save(contacto);
 	}
 
 }

@@ -133,7 +133,6 @@ public class ClienteService {
 		Assert.isTrue(op.isPresent(), "No existe el id");
 		// TODO borrar todos los contactos??
 		this.clienteRepository.deleteById(id);
-
 	}
 
 }

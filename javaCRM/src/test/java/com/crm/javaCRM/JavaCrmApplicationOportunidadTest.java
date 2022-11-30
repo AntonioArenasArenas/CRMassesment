@@ -27,7 +27,7 @@ class JavaCrmApplicationOportunidadTest {
 	@Test
 	void listOportunidadPass() {
 		String name = this.oportunidadService.listOne(1).getNombre();
-		assertEquals(name, "Antonio Arenas Arenas");
+		assertEquals("Antonio Arenas Arenas", name);
 	}
 
 	@Test
@@ -36,7 +36,7 @@ class JavaCrmApplicationOportunidadTest {
 			String name = this.oportunidadService.listOne(16).getNombre();
 			assertEquals(name, "Antonio Arenas Arenas");
 		} catch (IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "No existe una oportunidad con ese ID");
+			assertEquals("No existe una oportunidad con ese ID", e.getMessage());
 		}
 	}
 
@@ -85,9 +85,9 @@ class JavaCrmApplicationOportunidadTest {
 			creada = oportunidadService.crearOportunidad(o);
 
 		} catch (IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "Este usuario ya está en la base de datos!");
+			assertEquals("Este usuario ya está en la base de datos!", e.getMessage());
 		}
-		assertEquals(creada, null);
+		assertEquals(null, creada);
 	}
 
 	@Test
@@ -106,9 +106,9 @@ class JavaCrmApplicationOportunidadTest {
 			creada = oportunidadService.crearOportunidad(o);
 
 		} catch (IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "Este usuario ya está en la base de datos!");
+			assertEquals("Este usuario ya está en la base de datos!", e.getMessage());
 		}
-		assertEquals(creada, null);
+		assertEquals(null, creada);
 	}
 
 	@Test
@@ -127,9 +127,9 @@ class JavaCrmApplicationOportunidadTest {
 			creada = oportunidadService.crearOportunidad(o);
 
 		} catch (IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "El cliente no tiene nombre!");
+			assertEquals("El cliente no tiene nombre!", e.getMessage());
 		}
-		assertEquals(creada, null);
+		assertEquals(null, creada);
 	}
 
 	@Test
@@ -147,9 +147,9 @@ class JavaCrmApplicationOportunidadTest {
 			creada = oportunidadService.crearOportunidad(o);
 
 		} catch (IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "El cliente no tiene nombre!");
+			assertEquals("El cliente no tiene nombre!", e.getMessage());
 		}
-		assertEquals(creada, null);
+		assertEquals(null, creada);
 	}
 
 	@Test
@@ -157,7 +157,7 @@ class JavaCrmApplicationOportunidadTest {
 		Oportunidad o = this.oportunidadService.listOne(1);
 		o.setNombre("Triple A");
 		Oportunidad editada = this.oportunidadService.editar(o);
-		assertEquals(editada.getNombre(), "Triple A");
+		assertEquals("Triple A", editada.getNombre());
 	}
 
 	@Test
@@ -170,7 +170,7 @@ class JavaCrmApplicationOportunidadTest {
 		} catch (Exception e) {
 
 		}
-		assertEquals(editada, null);
+		assertEquals(null, editada);
 
 	}
 
@@ -183,7 +183,7 @@ class JavaCrmApplicationOportunidadTest {
 			editada = this.oportunidadService.editar(o);
 		} catch (Exception e) {
 		}
-		assertEquals(editada, null);
+		assertEquals(null, editada);
 	}
 
 	@Test
@@ -195,7 +195,7 @@ class JavaCrmApplicationOportunidadTest {
 			editada = this.oportunidadService.editar(o);
 		} catch (Exception e) {
 		}
-		assertEquals(editada, null);
+		assertEquals(null, editada);
 	}
 
 	@Test
@@ -207,7 +207,7 @@ class JavaCrmApplicationOportunidadTest {
 			editada = this.oportunidadService.editar(o);
 		} catch (Exception e) {
 		}
-		assertEquals(editada, null);
+		assertEquals(null, editada);
 	}
 
 	// Los métodos de borrado pueden falsear el resultado por lo que deben
@@ -219,7 +219,7 @@ class JavaCrmApplicationOportunidadTest {
 		} catch (Exception e) {
 
 		}
-		assertEquals(this.oportunidadService.list().size(), 3);
+		assertEquals(3, this.oportunidadService.list().size());
 	}
 
 	@Test
@@ -229,7 +229,7 @@ class JavaCrmApplicationOportunidadTest {
 		} catch (Exception e) {
 
 		}
-		assertEquals(this.oportunidadService.list().size(), 4);
+		assertEquals(4, this.oportunidadService.list().size());
 	}
 
 	// TODO metodo login

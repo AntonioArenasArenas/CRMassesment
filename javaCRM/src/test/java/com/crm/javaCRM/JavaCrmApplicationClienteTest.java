@@ -29,7 +29,7 @@ class JavaCrmApplicationClienteTest {
 	@Test
 	void listClientePass() {
 		String name = this.clienteService.listOne(5).getNombre();
-		assertEquals(name, "Pepe");
+		assertEquals("Pepe", name);
 	}
 
 	@Test
@@ -38,7 +38,7 @@ class JavaCrmApplicationClienteTest {
 			String name = this.clienteService.listOne(16).getNombre();
 			assertEquals(name, "Pepe");
 		} catch (IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "No existe un cliente con ese ID");
+			assertEquals("No existe un cliente con ese ID", e.getMessage());
 		}
 	}
 
@@ -93,7 +93,7 @@ class JavaCrmApplicationClienteTest {
 		} catch (IllegalArgumentException e) {
 			assertEquals(e.getMessage(), "Este usuario ya está en la base de datos!");
 		}
-		assertEquals(creada, null);
+		assertEquals(null, creada);
 	}
 
 	@Test
@@ -116,7 +116,7 @@ class JavaCrmApplicationClienteTest {
 		} catch (IllegalArgumentException e) {
 			assertEquals(e.getMessage(), "Este usuario ya está en la base de datos!");
 		}
-		assertEquals(creada, null);
+		assertEquals(null, creada);
 	}
 
 	@Test
@@ -139,7 +139,7 @@ class JavaCrmApplicationClienteTest {
 		} catch (IllegalArgumentException e) {
 			assertEquals(e.getMessage(), "El cliente no tiene nombre!");
 		}
-		assertEquals(creada, null);
+		assertEquals(null, creada);
 	}
 
 	@Test
@@ -162,7 +162,7 @@ class JavaCrmApplicationClienteTest {
 		} catch (IllegalArgumentException e) {
 			assertEquals(e.getMessage(), "Este usuario ya está en la base de datos!");
 		}
-		assertEquals(creada, null);
+		assertEquals(null, creada);
 	}
 
 	@Test
@@ -185,7 +185,7 @@ class JavaCrmApplicationClienteTest {
 		} catch (IllegalArgumentException e) {
 			assertEquals(e.getMessage(), "El cliente no tiene DNI!");
 		}
-		assertEquals(creada, null);
+		assertEquals(null, creada);
 	}
 
 	@Test
@@ -193,7 +193,7 @@ class JavaCrmApplicationClienteTest {
 		Cliente c = this.clienteService.listOne(5);
 		c.setNombre("Triple A");
 		Cliente editado = this.clienteService.editar(c);
-		assertEquals(editado.getNombre(), "Triple A");
+		assertEquals("Triple A", editado.getNombre());
 	}
 
 	@Test
@@ -206,7 +206,7 @@ class JavaCrmApplicationClienteTest {
 		} catch (Exception e) {
 
 		}
-		assertEquals(editado, null);
+		assertEquals(null, editado);
 
 	}
 
@@ -219,7 +219,7 @@ class JavaCrmApplicationClienteTest {
 			editado = this.clienteService.editar(c);
 		} catch (Exception e) {
 		}
-		assertEquals(editado, null);
+		assertEquals(null, editado);
 	}
 
 	@Test
@@ -231,7 +231,7 @@ class JavaCrmApplicationClienteTest {
 			editado = this.clienteService.editar(c);
 		} catch (Exception e) {
 		}
-		assertEquals(editado, null);
+		assertEquals(null, editado);
 	}
 
 	@Test
@@ -243,7 +243,7 @@ class JavaCrmApplicationClienteTest {
 			editado = this.clienteService.editar(c);
 		} catch (Exception e) {
 		}
-		assertEquals(editado, null);
+		assertEquals(null, editado);
 	}
 
 	@Test
@@ -255,7 +255,7 @@ class JavaCrmApplicationClienteTest {
 			editado = this.clienteService.editar(c);
 		} catch (Exception e) {
 		}
-		assertEquals(editado, null);
+		assertEquals(null, editado);
 	}
 
 	@Test
@@ -267,7 +267,7 @@ class JavaCrmApplicationClienteTest {
 			editado = this.clienteService.editar(c);
 		} catch (Exception e) {
 		}
-		assertEquals(editado, null);
+		assertEquals(null, editado);
 	}
 
 	// Los métodos de borrado pueden falsear el resultado por lo que deben
@@ -279,7 +279,7 @@ class JavaCrmApplicationClienteTest {
 		} catch (Exception e) {
 
 		}
-		assertEquals(this.clienteService.list().size(), 3);
+		assertEquals(3, this.clienteService.list().size());
 	}
 
 	@Test
@@ -289,6 +289,6 @@ class JavaCrmApplicationClienteTest {
 		} catch (Exception e) {
 
 		}
-		assertEquals(this.clienteService.list().size(), 4);
+		assertEquals(4, this.clienteService.list().size());
 	}
 }
