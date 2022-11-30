@@ -1,6 +1,7 @@
 package com.crm.javaCRM.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -66,6 +67,17 @@ public class OportunidadController {
 	}
 
 	/**
+	 * Método para el login, se le pasa en el cuerpo de la llamada usuario y
+	 * contraseña
+	 */
+	@PostMapping("/oportunidades/login")
+	List<Oportunidad> login(@RequestBody Map<String, String> json) {
+		List<Oportunidad> response;
+		response = this.oportunidadService.login(json.get("username"), json.get("password"));
+		return response;
+	}
+
+	/**
 	 * Método para modificar una oportunidad según su ID
 	 * 
 	 * @param nuevaOportunidad la oportunidad con los datos actualizados
@@ -97,4 +109,5 @@ public class OportunidadController {
 			return "Hubo un problema";
 		}
 	}
+
 }

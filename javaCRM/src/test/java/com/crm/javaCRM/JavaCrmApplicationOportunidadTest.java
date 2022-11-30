@@ -2,6 +2,7 @@ package com.crm.javaCRM;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -270,7 +271,7 @@ class JavaCrmApplicationOportunidadTest {
 	void loginFail() {
 		List<Oportunidad> listaInicio = null;
 		listaInicio = this.oportunidadService.login("usernames", "password");
-		assertEquals(null, listaInicio);
+		assertTrue(listaInicio.isEmpty());
 	}
 
 }

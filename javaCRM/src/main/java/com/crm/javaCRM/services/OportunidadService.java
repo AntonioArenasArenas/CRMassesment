@@ -12,7 +12,9 @@ import org.springframework.util.Assert;
 import com.crm.javaCRM.model.Contacto;
 import com.crm.javaCRM.model.Oportunidad;
 import com.crm.javaCRM.repositories.OportunidadRepository;
+import java.util.Collections;
 
+/**Clase que gestiona el servicio de la entidad Oportunidad*/
 @Service
 @Transactional
 public class OportunidadService {
@@ -120,10 +122,20 @@ public class OportunidadService {
 		this.oportunidadRepository.deleteById(id);
 	}
 
-	public List<Oportunidad> login(String string, String string2) {
-		// TODO Auto-generated method stub
-		return null;
+	/**
+	 * Login sencillo que sólo es válido si username=username y password=password
+	 * 
+	 * @param username el username introducido
+	 * @param password el password introducido
+	 * @return La lista de oportunidades del sistema o una lista vacía si no es
+	 *         correcto
+	 */
+	public List<Oportunidad> login(String username, String password) {
+		if (username.equals("username") && password.equals("password")) {
+			return this.list();
+		} else {
+			return Collections.emptyList();
+		}
 	}
-
 
 }

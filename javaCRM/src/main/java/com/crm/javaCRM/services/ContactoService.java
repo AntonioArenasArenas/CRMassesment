@@ -14,6 +14,7 @@ import com.crm.javaCRM.model.Persona;
 import com.crm.javaCRM.repositories.ContactoRepository;
 import com.crm.javaCRM.repositories.PersonaRepository;
 
+/** Clase que gestiona el servicio de la entidad Contacto */
 @Service
 @Transactional
 public class ContactoService {

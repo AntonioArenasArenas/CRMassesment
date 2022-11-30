@@ -48,6 +48,14 @@ public class ContactoController {
 		}
 	}
 
+	/**
+	 * Método que crea un Contacto , se le pasa el ID de la persona a la que
+	 * pertenece por URL
+	 * 
+	 * @param id ID de la persona a la que pertenece el contacto
+	 * @param c  contacto a crear
+	 * @return el contacto creado o un mensaje de error si algo falla
+	 */
 	@PostMapping("/contactos/{id}")
 	Object crearContacto(@PathVariable Integer id, @RequestBody Contacto c) {
 		try {
@@ -57,6 +65,14 @@ public class ContactoController {
 		}
 	}
 
+	/**
+	 * Método que modifica un Contacto, se le pasa el ID de la persona a la que
+	 * pertenece por URL
+	 * 
+	 * @param id ID de la persona a la que pertenece el contacto
+	 * @param c  contacto modificado
+	 * @return el contacto modificado o un mensaje de error si algo falla
+	 */
 	@PutMapping("/contactos/{id}")
 	Object actualizarContacto(@PathVariable Integer id, @RequestBody Contacto c) {
 		try {
@@ -66,6 +82,12 @@ public class ContactoController {
 		}
 	}
 
+	/**
+	 * Método que borra un contacto
+	 * 
+	 * @param id ID del contacto a borrar
+	 * @return Un mensaje que certifica si se ha borrado o no el contacto
+	 */
 	@DeleteMapping("/contactos/{id}")
 	String borrarContacto(@PathVariable Integer id) {
 		try {
