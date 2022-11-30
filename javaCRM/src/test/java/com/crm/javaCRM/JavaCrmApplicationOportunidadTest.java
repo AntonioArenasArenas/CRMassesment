@@ -197,7 +197,7 @@ class JavaCrmApplicationOportunidadTest {
 		}
 		assertEquals(editada, null);
 	}
-	
+
 	@Test
 	void editarOportunidadNombreNullFail() {
 		Oportunidad editada = null;
@@ -231,4 +231,6 @@ class JavaCrmApplicationOportunidadTest {
 		}
 		assertEquals(this.oportunidadService.list().size(), 4);
 	}
+
+	// TODO metodo login
 }

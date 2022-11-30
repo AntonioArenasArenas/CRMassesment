@@ -46,4 +46,9 @@ public class ContactoService {
 		return c.get();
 	}
 
+	public Contacto crearContacto(Contacto contacto, int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

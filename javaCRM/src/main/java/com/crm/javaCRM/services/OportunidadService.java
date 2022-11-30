@@ -116,4 +116,5 @@ public class OportunidadService {
 		this.oportunidadRepository.deleteById(id);
 	}
 
+	// TODO metodo login
 }
