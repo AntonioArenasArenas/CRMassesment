@@ -120,5 +120,10 @@ public class OportunidadService {
 		this.oportunidadRepository.deleteById(id);
 	}
 
-	// TODO metodo login
+	public List<Oportunidad> login(String string, String string2) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 }
