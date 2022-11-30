@@ -142,4 +142,23 @@ public class JavaCrmApplicationContactoTest {
 		assertEquals(null, contacto);
 	}
 
+	@Test
+	void borrarContactoPass() {
+		try {
+			this.contactoService.delete(1);
+		} catch (Exception e) {
+
+		}
+		assertEquals(9, this.contactoService.list().size());
+	}
+
+	@Test
+	void borrarContactoWrongIdFail() {
+		try {
+			this.contactoService.delete(15);
+		} catch (Exception e) {
+
+		}
+		assertEquals(10, this.contactoService.list().size());
+	}
 }
