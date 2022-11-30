@@ -63,6 +63,7 @@ public class ClienteService {
 		Assert.notNull(c, "Objeto pasado sin parámetros");
 		Assert.notNull(c.getNombre(), "El cliente no tiene nombre");
 		Assert.isTrue(!c.getNombre().isBlank(), "El cliente no tiene nombre!");
+		Assert.notNull(c.getDni(), "El cliente no tiene DNI!");
 		Assert.isTrue(!c.getDni().isBlank(), "El cliente no tiene DNI!");
 		Cliente creado = null;
 		String email = c.getEmail();
@@ -77,10 +78,8 @@ public class ClienteService {
 			obbdd = clienteRepository.findByTelefono(telefono);
 			Assert.isTrue(obbdd.isEmpty(), "Este usuario ya está en la base de datos!");
 		}
-		if (dni != null) {
-			obbdd = clienteRepository.findByDni(dni);
-			Assert.isTrue(obbdd.isEmpty(), "Este usuario ya está en la base de datos!");
-		}
+		obbdd = clienteRepository.findByDni(dni);
+		Assert.isTrue(obbdd.isEmpty(), "Este usuario ya está en la base de datos!");
 		if (c.getContactos() == null) {
 			c.setContactos(new LinkedList<>());
 		}
@@ -103,6 +102,22 @@ public class ClienteService {
 		// cliente
 		return null;
 
+	}
+
+	/**
+	 * Actualización de un cliente, usa el ID del cliente pasado por parámetros como
+	 * el ID con el que guardar
+	 * 
+	 * @param c Cliente con los datos ya actualizados
+	 * @return el cliente actualizado tras ser guardado en la base de datos
+	 * @exception IllegalArgumentException si no existe el ID en cuestión
+	 */
+	public Cliente editar(Cliente c) {
+		Optional<Cliente> op = this.clienteRepository.findById(c.getId());
+		Assert.isTrue(op.isPresent(), "No existe el id");
+		Cliente editado = null;
+		editado = this.clienteRepository.save(c);
+		return editado;
 	}
 
 }

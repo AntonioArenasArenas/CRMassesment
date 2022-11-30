@@ -188,51 +188,88 @@ class JavaCrmApplicationClienteTest {
 		assertEquals(creada, null);
 	}
 
-//	@Test
-//	void editarOportunidadPass() {
-//		Oportunidad o = this.oportunidadService.listOne(1);
-//		o.setNombre("Triple A");
-//		Oportunidad editada = this.oportunidadService.editar(o);
-//		assertEquals(editada.getNombre(), "Triple A");
-//	}
-//
-//	@Test
-//	void editarOportunidadCorreoIncorrectoFail() {
-//		Oportunidad editada = null;
-//		Oportunidad o = this.oportunidadService.listOne(1);
-//		o.setEmail("@@@.2@@");
-//		try {
-//			editada = this.oportunidadService.editar(o);
-//		} catch (Exception e) {
-//
-//		}
-//		assertEquals(editada, null);
-//
-//	}
-//
-//	@Test
-//	void editarOportunidadTelefonoExistenteFail() {
-//		Oportunidad editada = null;
-//		Oportunidad o = this.oportunidadService.listOne(2);
-//		o.setTelefono("638453173");
-//		try {
-//			editada = this.oportunidadService.editar(o);
-//		} catch (Exception e) {
-//		}
-//		assertEquals(editada, null);
-//	}
-//
-//	@Test
-//	void editarOportunidadNombreVacioFail() {
-//		Oportunidad editada = null;
-//		Oportunidad o = this.oportunidadService.listOne(1);
-//		o.setNombre("");
-//		try {
-//			editada = this.oportunidadService.editar(o);
-//		} catch (Exception e) {
-//		}
-//		assertEquals(editada, null);
-//	}
+	@Test
+	void editarClientePass() {
+		Cliente c = this.clienteService.listOne(5);
+		c.setNombre("Triple A");
+		Cliente editado = this.clienteService.editar(c);
+		assertEquals(editado.getNombre(), "Triple A");
+	}
+
+	@Test
+	void editarClienteCorreoIncorrectoFail() {
+		Cliente editado = null;
+		Cliente c = this.clienteService.listOne(5);
+		c.setEmail("@@@.2@@");
+		try {
+			editado = this.clienteService.editar(c);
+		} catch (Exception e) {
+
+		}
+		assertEquals(editado, null);
+
+	}
+
+	@Test
+	void editarOportunidadTelefonoExistenteFail() {
+		Cliente editado = null;
+		Cliente c = this.clienteService.listOne(6);
+		c.setTelefono("6587452396");
+		try {
+			editado = this.clienteService.editar(c);
+		} catch (Exception e) {
+		}
+		assertEquals(editado, null);
+	}
+
+	@Test
+	void editarOportunidadNombreVacioFail() {
+		Cliente editado = null;
+		Cliente c = this.clienteService.listOne(5);
+		c.setNombre("");
+		try {
+			editado = this.clienteService.editar(c);
+		} catch (Exception e) {
+		}
+		assertEquals(editado, null);
+	}
+
+	@Test
+	void editarOportunidadNombreNullFail() {
+		Cliente editado = null;
+		Cliente c = this.clienteService.listOne(5);
+		c.setNombre(null);
+		try {
+			editado = this.clienteService.editar(c);
+		} catch (Exception e) {
+		}
+		assertEquals(editado, null);
+	}
+
+	@Test
+	void editarOportunidadDniVacioFail() {
+		Cliente editado = null;
+		Cliente c = this.clienteService.listOne(5);
+		c.setDni("");
+		try {
+			editado = this.clienteService.editar(c);
+		} catch (Exception e) {
+		}
+		assertEquals(editado, null);
+	}
+
+	@Test
+	void editarOportunidadDniNullFail() {
+		Cliente editado = null;
+		Cliente c = this.clienteService.listOne(5);
+		c.setDni(null);
+		try {
+			editado = this.clienteService.editar(c);
+		} catch (Exception e) {
+		}
+		assertEquals(editado, null);
+	}
+
 //
 //	// Los métodos de borrado pueden falsear el resultado por lo que deben
 //	// ejecutarse individualmente

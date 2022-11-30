@@ -197,6 +197,18 @@ class JavaCrmApplicationOportunidadTest {
 		}
 		assertEquals(editada, null);
 	}
+	
+	@Test
+	void editarOportunidadNombreNullFail() {
+		Oportunidad editada = null;
+		Oportunidad o = this.oportunidadService.listOne(1);
+		o.setNombre(null);
+		try {
+			editada = this.oportunidadService.editar(o);
+		} catch (Exception e) {
+		}
+		assertEquals(editada, null);
+	}
 
 	// Los métodos de borrado pueden falsear el resultado por lo que deben
 	// ejecutarse individualmente
