@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.crm.javaCRM.model.Cliente;
 import com.crm.javaCRM.services.ClienteService;
 
-/** Controlador de Oportunidad con los métodos CRUD */
+/** Controlador de Cliente con los métodos CRUD */
 @RestController
 public class ClienteController {
 

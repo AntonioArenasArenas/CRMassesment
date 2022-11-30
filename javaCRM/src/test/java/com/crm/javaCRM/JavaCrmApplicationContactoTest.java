@@ -15,13 +15,13 @@ public class JavaCrmApplicationContactoTest {
 	ContactoService contactoService;
 
 	@Test
-	void listClientePass() {
-		String name = this.contactoService.listOne(0).getMotivo();
+	void listContactoPass() {
+		String name = this.contactoService.listOne(1).getMotivo();
 		assertEquals(name, "Interesado en una vivienda de 2 dormitorios");
 	}
 
 	@Test
-	void listClienteWrongIdFail() {
+	void listClienteContactoIdFail() {
 		try {
 			String name = this.contactoService.listOne(19).getMotivo();
 			assertEquals(name, "Interesado en una vivienda de 2 dormitorios");
@@ -29,4 +29,6 @@ public class JavaCrmApplicationContactoTest {
 			assertEquals(e.getMessage(), "No existe un cliente con ese ID");
 		}
 	}
+	
+	
 }
