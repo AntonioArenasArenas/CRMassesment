@@ -118,11 +118,14 @@ public class DatosCommandLineRunner implements CommandLineRunner {
 		productos.add("Casa en venta en calle Arroyo, Sevilla");
 		productos.add("Terrenos comprados en las afueras de Paterna del Campo, Huelva");
 		Cliente cliente1 = new Cliente("78965214E", 45, productos);
+		Contacto c11 = new Contacto(MetodoContacto.SALE_VISIT, "Visita un estudio cerca del centro",
+				df.parse("13/06/22"), cliente1);
 		cliente1.setContactos(new LinkedList<>());
 		cliente1.setNombre("Pepe");
 		cliente1.setDireccion("Calle cualquiera");
 		cliente1.setEmail("emailvaido@gmail.com");
 		cliente1.setTelefono("6587452396");
+		cliente1.getContactos().add(c11);
 		Cliente cliente2 = new Cliente("78965214P", 45, productos);
 		cliente2.setContactos(new LinkedList<>());
 		cliente2.setNombre("Manolo");
@@ -136,6 +139,7 @@ public class DatosCommandLineRunner implements CommandLineRunner {
 		cliente4.setContactos(new LinkedList<>());
 		cliente4.setNombre("Jose Luis");
 		clirepository.save(cliente1);
+		crepository.save(c11);
 		clirepository.save(cliente2);
 		clirepository.save(cliente3);
 		clirepository.save(cliente4);

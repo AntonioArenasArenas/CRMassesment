@@ -279,8 +279,8 @@ class JavaCrmApplicationClienteTest {
 		assertEquals(null, editado);
 	}
 
-	// Los métodos de borrado pueden falsear el resultado por lo que deben
-	// ejecutarse individualmente
+	// Los métodos que involucran algún borrado pueden falsear el resultado por lo
+	// que deben ejecutarse individualmente
 	@Test
 	void borrarClientePass() {
 		try {
@@ -340,7 +340,13 @@ class JavaCrmApplicationClienteTest {
 
 	@Test
 	void borrarClienteYContactosFail() {
+		try {
+			this.clienteService.delete(55);
+		} catch (Exception e) {
 
+		}
+		assertEquals(4, this.clienteService.list().size());
+		assertEquals(11, this.contactoService.list().size());
 	}
 
 }

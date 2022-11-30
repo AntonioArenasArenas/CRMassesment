@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.crm.javaCRM.model.Contacto;
 import com.crm.javaCRM.model.MetodoContacto;
 import com.crm.javaCRM.model.Oportunidad;
+import com.crm.javaCRM.services.ContactoService;
 import com.crm.javaCRM.services.OportunidadService;
 
 @SpringBootTest
@@ -23,6 +24,9 @@ class JavaCrmApplicationOportunidadTest {
 
 	@Autowired
 	OportunidadService oportunidadService;
+
+	@Autowired
+	ContactoService contactoService;
 
 	@Test
 	void listOportunidadPass() {
@@ -232,6 +236,26 @@ class JavaCrmApplicationOportunidadTest {
 		assertEquals(4, this.oportunidadService.list().size());
 	}
 
-	// TODO hacer test de borrar contactos al borrar oportunidad
+	@Test
+	void borrarOportunidadYContactosPass() {
+		try {
+			this.oportunidadService.delete(1);
+		} catch (Exception e) {
+
+		}
+		assertEquals(3, this.oportunidadService.list().size());
+		assertEquals(7, this.contactoService.list().size());
+	}
+
+	@Test
+	void borrarOportunidadYContactosFail() {
+		try {
+			this.oportunidadService.delete(55);
+		} catch (Exception e) {
+
+		}
+		assertEquals(4, this.oportunidadService.list().size());
+		assertEquals(11, this.contactoService.list().size());
+	}
 	// TODO metodo login
 }
