@@ -17,12 +17,16 @@ import com.crm.javaCRM.model.Cliente;
 import com.crm.javaCRM.model.Contacto;
 import com.crm.javaCRM.model.MetodoContacto;
 import com.crm.javaCRM.services.ClienteService;
+import com.crm.javaCRM.services.OportunidadService;
 
 @SpringBootTest
 class JavaCrmApplicationClienteTest {
 
 	@Autowired
 	ClienteService clienteService;
+
+	@Autowired
+	OportunidadService oportunidadService;
 
 	// Aunque es el primer cliente, tiene ID 5 porque todos son personas y hay 4
 	// oportunidades creadas
@@ -64,7 +68,7 @@ class JavaCrmApplicationClienteTest {
 		creada = clienteService.crearCliente(c);
 		try {
 			c.getContactos().add(
-					new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones", df.parse(fecha), c));
+					new Contacto(MetodoContacto.CALL, "Interesado en un piso de 3 habitaciones", df.parse(fecha), c));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -84,7 +88,7 @@ class JavaCrmApplicationClienteTest {
 		c.setDni("77845374C");
 		c.setProductos(new ArrayList<String>());
 		List<Contacto> contactos = new LinkedList<>();
-		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+		contactos.add(new Contacto(MetodoContacto.CALL, "Interesado en un piso de 3 habitaciones",
 				new Date(System.currentTimeMillis() - 1), c));
 		c.setContactos(contactos);
 		try {
@@ -107,7 +111,7 @@ class JavaCrmApplicationClienteTest {
 		c.setDni("77845374D");
 		c.setProductos(new ArrayList<String>());
 		List<Contacto> contactos = new LinkedList<>();
-		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+		contactos.add(new Contacto(MetodoContacto.CALL, "Interesado en un piso de 3 habitaciones",
 				new Date(System.currentTimeMillis() - 1), c));
 		c.setContactos(contactos);
 		try {
@@ -130,7 +134,7 @@ class JavaCrmApplicationClienteTest {
 		c.setDni("77845374A");
 		c.setProductos(new ArrayList<String>());
 		List<Contacto> contactos = new LinkedList<>();
-		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+		contactos.add(new Contacto(MetodoContacto.CALL, "Interesado en un piso de 3 habitaciones",
 				new Date(System.currentTimeMillis() - 1), c));
 		c.setContactos(contactos);
 		try {
@@ -153,7 +157,7 @@ class JavaCrmApplicationClienteTest {
 		c.setDni("78965214E");
 		c.setProductos(new ArrayList<String>());
 		List<Contacto> contactos = new LinkedList<>();
-		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+		contactos.add(new Contacto(MetodoContacto.CALL, "Interesado en un piso de 3 habitaciones",
 				new Date(System.currentTimeMillis() - 1), c));
 		c.setContactos(contactos);
 		try {
@@ -176,7 +180,7 @@ class JavaCrmApplicationClienteTest {
 		c.setDni("");
 		c.setProductos(new ArrayList<String>());
 		List<Contacto> contactos = new LinkedList<>();
-		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+		contactos.add(new Contacto(MetodoContacto.CALL, "Interesado en un piso de 3 habitaciones",
 				new Date(System.currentTimeMillis() - 1), c));
 		c.setContactos(contactos);
 		try {
@@ -290,5 +294,31 @@ class JavaCrmApplicationClienteTest {
 
 		}
 		assertEquals(4, this.clienteService.list().size());
+	}
+
+	@Test
+	void crearClienteDeOportunidadPass() {
+		Cliente creado = null;
+		try {
+			creado = this.clienteService.crearClienteOportunidad(1);
+		} catch (IllegalArgumentException i) {
+
+		}
+		assertNotNull(creado);
+		assertEquals(3, this.oportunidadService.list().size());
+		assertEquals(5, this.clienteService.list().size());
+	}
+
+	@Test
+	void crearClienteDeOportunidadWrongIdFail() {
+		Cliente creado = null;
+		try {
+			creado = this.clienteService.crearClienteOportunidad(50);
+		} catch (IllegalArgumentException i) {
+
+		}
+		assertNotNull(creado);
+		assertEquals(3, this.oportunidadService.list().size());
+		assertEquals(5, this.clienteService.list().size());
 	}
 }

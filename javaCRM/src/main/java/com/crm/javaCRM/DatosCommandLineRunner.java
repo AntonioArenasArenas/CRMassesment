@@ -46,12 +46,12 @@ public class DatosCommandLineRunner implements CommandLineRunner {
 		op1.setEmail("antonio.arenas@solera.com");
 		op1.setTelefono("638453173");
 		op1.setContactos(new LinkedList<>());
-		Contacto c1 = new Contacto(MetodoContacto.call, "Interesado en una vivienda de 2 dormitorios",
+		Contacto c1 = new Contacto(MetodoContacto.CALL, "Interesado en una vivienda de 2 dormitorios",
 				df.parse("06/09/22"), op1);
-		Contacto c2 = new Contacto(MetodoContacto.email, "Interesado en el 3ºA", df.parse("07/10/22"), op1);
-		Contacto c3 = new Contacto(MetodoContacto.sale_visit, "Visita la vivienda en la que está interesado",
+		Contacto c2 = new Contacto(MetodoContacto.EMAIL, "Interesado en el 3ºA", df.parse("07/10/22"), op1);
+		Contacto c3 = new Contacto(MetodoContacto.SALE_VISIT, "Visita la vivienda en la que está interesado",
 				df.parse("28/11/22"), op1);
-		Contacto c4 = new Contacto(MetodoContacto.call, "Llamada para concretar las condiciones y firmar el pago",
+		Contacto c4 = new Contacto(MetodoContacto.CALL, "Llamada para concretar las condiciones y firmar el pago",
 				df.parse("05/12/22"), op1);
 		op1.getContactos().add(c1);
 		op1.getContactos().add(c2);
@@ -70,10 +70,10 @@ public class DatosCommandLineRunner implements CommandLineRunner {
 		op2.setDireccion("Calle San Benito 14");
 		op2.setEmail("smanervion@hotmail.com");
 		op2.setContactos(new LinkedList<>());
-		Contacto c5 = new Contacto(MetodoContacto.email, "Interesada en una vivienda de 2 dormitorios",
+		Contacto c5 = new Contacto(MetodoContacto.EMAIL, "Interesada en una vivienda de 2 dormitorios",
 				df.parse("11/09/22"), op2);
-		Contacto c6 = new Contacto(MetodoContacto.email, "Interesada en el 1ºB", df.parse("15/10/22"), op2);
-		Contacto c7 = new Contacto(MetodoContacto.sale_visit, "Visita la vivienda con su pareja y también el 3ºA",
+		Contacto c6 = new Contacto(MetodoContacto.EMAIL, "Interesada en el 1ºB", df.parse("15/10/22"), op2);
+		Contacto c7 = new Contacto(MetodoContacto.SALE_VISIT, "Visita la vivienda con su pareja y también el 3ºA",
 				df.parse("28/11/22"), op2);
 		op2.getContactos().add(c5);
 		op2.getContactos().add(c6);
@@ -89,9 +89,9 @@ public class DatosCommandLineRunner implements CommandLineRunner {
 		op3.setNombre("Francisco Pérez Vergara");
 		op3.setDireccion("Calle Tharsis 26");
 		op3.setContactos(new LinkedList<>());
-		Contacto c8 = new Contacto(MetodoContacto.sale_visit, "Visita un estudio cerca del centro",
+		Contacto c8 = new Contacto(MetodoContacto.SALE_VISIT, "Visita un estudio cerca del centro",
 				df.parse("13/06/22"), op3);
-		Contacto c9 = new Contacto(MetodoContacto.sale_visit, "Visita un estudio cerca de la alameda",
+		Contacto c9 = new Contacto(MetodoContacto.SALE_VISIT, "Visita un estudio cerca de la alameda",
 				df.parse("04/10/22"), op3);
 		op3.getContactos().add(c8);
 		op3.getContactos().add(c9);
@@ -104,7 +104,7 @@ public class DatosCommandLineRunner implements CommandLineRunner {
 		Oportunidad op4 = new Oportunidad();
 		op4.setNombre("Antonio Manuel Díaz Arenas");
 		op4.setContactos(new LinkedList<>());
-		Contacto c10 = new Contacto(MetodoContacto.sale_visit, "Visita un estudio cerca del centro",
+		Contacto c10 = new Contacto(MetodoContacto.SALE_VISIT, "Visita un estudio cerca del centro",
 				df.parse("13/06/22"), op4);
 		op4.getContactos().add(c10);
 		this.repository.save(op4);

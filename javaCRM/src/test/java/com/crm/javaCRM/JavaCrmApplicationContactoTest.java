@@ -40,7 +40,7 @@ public class JavaCrmApplicationContactoTest {
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy");
 		Contacto contacto = null;
 		try {
-			contacto = new Contacto(MetodoContacto.email, "Porque estaba aburrido en casa", df.parse(fecha), null);
+			contacto = new Contacto(MetodoContacto.EMAIL, "Porque estaba aburrido en casa", df.parse(fecha), null);
 			contacto = this.contactoService.crearContacto(contacto, 1);
 		} catch (Exception e) {
 
@@ -68,7 +68,7 @@ public class JavaCrmApplicationContactoTest {
 		SimpleDateFormat df = new SimpleDateFormat("dd/MM/yy");
 		Contacto contacto = null;
 		try {
-			contacto = this.contactoService.crearContacto(new Contacto(MetodoContacto.email, "", df.parse(fecha), null),
+			contacto = this.contactoService.crearContacto(new Contacto(MetodoContacto.EMAIL, "", df.parse(fecha), null),
 					1);
 		} catch (Exception e) {
 
@@ -83,7 +83,7 @@ public class JavaCrmApplicationContactoTest {
 		Contacto contacto = null;
 		try {
 			contacto = this.contactoService.crearContacto(
-					new Contacto(MetodoContacto.email, "Porque estaba aburrido en casa", df.parse(fecha), null), 50);
+					new Contacto(MetodoContacto.EMAIL, "Porque estaba aburrido en casa", df.parse(fecha), null), 50);
 		} catch (Exception e) {
 
 		}

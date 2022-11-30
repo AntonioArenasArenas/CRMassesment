@@ -2,5 +2,5 @@ package com.crm.javaCRM.model;
 
 public enum MetodoContacto {
 
-	call,email,sale_visit
+	CALL,EMAIL,SALE_VISIT
 }

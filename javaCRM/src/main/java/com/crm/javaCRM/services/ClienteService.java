@@ -91,13 +91,11 @@ public class ClienteService {
 	/**
 	 * Método utilizado para crear un cliente a partir de una oportunidad
 	 * 
-	 * @param o Oportunidad original
-	 * @param c Cliente con los datos extras de la clase Cliente
+	 * @param id ID de la oportunidad que se convertirá en cliente
 	 */
-	public Cliente crearClienteOportunidad(Oportunidad o, Cliente c) {
+	public Cliente crearClienteOportunidad(Integer id) {
 
 		// Pasamos los campos correspondientes de la oportunidad al cliente
-		c.setOportunidad(o);
 
 		// TODO recorrer los contactos de o y actualizarlos a cliente guardando primero
 		// cliente

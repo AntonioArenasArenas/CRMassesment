@@ -112,6 +112,7 @@ public class ContactoService {
 	 * Método para borrar contactos
 	 * 
 	 * @param id ID del contacto a borrar
+	 * @exception IllegalArgumentException si no existe el ID
 	 */
 	public void delete(Integer id) {
 

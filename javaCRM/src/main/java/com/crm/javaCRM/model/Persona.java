@@ -35,7 +35,7 @@ public abstract class Persona {
 
 	}
 
-	public Persona(String nombre, String email, String direccion, String telefono, List<Contacto> contactos) {
+	protected Persona(String nombre, String email, String direccion, String telefono, List<Contacto> contactos) {
 		this.nombre = nombre;
 		this.email = email;
 		this.direccion = direccion;

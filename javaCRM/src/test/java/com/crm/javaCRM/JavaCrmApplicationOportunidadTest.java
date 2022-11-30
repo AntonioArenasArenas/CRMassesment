@@ -60,7 +60,7 @@ class JavaCrmApplicationOportunidadTest {
 		creada = oportunidadService.crearOportunidad(o);
 		try {
 			o.getContactos().add(
-					new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones", df.parse(fecha), o));
+					new Contacto(MetodoContacto.CALL, "Interesado en un piso de 3 habitaciones", df.parse(fecha), o));
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
@@ -78,7 +78,7 @@ class JavaCrmApplicationOportunidadTest {
 		o.setNombre(nombre);
 		o.setTelefono(telefono);
 		List<Contacto> contactos = new LinkedList<>();
-		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+		contactos.add(new Contacto(MetodoContacto.CALL, "Interesado en un piso de 3 habitaciones",
 				new Date(System.currentTimeMillis() - 1), o));
 		o.setContactos(contactos);
 		try {
@@ -99,7 +99,7 @@ class JavaCrmApplicationOportunidadTest {
 		o.setNombre(nombre);
 		o.setEmail(email);
 		List<Contacto> contactos = new LinkedList<>();
-		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+		contactos.add(new Contacto(MetodoContacto.CALL, "Interesado en un piso de 3 habitaciones",
 				new Date(System.currentTimeMillis() - 1), o));
 		o.setContactos(contactos);
 		try {
@@ -120,7 +120,7 @@ class JavaCrmApplicationOportunidadTest {
 		o.setNombre(nombre);
 		o.setEmail(email);
 		List<Contacto> contactos = new LinkedList<>();
-		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+		contactos.add(new Contacto(MetodoContacto.CALL, "Interesado en un piso de 3 habitaciones",
 				new Date(System.currentTimeMillis() - 1), o));
 		o.setContactos(contactos);
 		try {
@@ -140,7 +140,7 @@ class JavaCrmApplicationOportunidadTest {
 		o.setNombre(null);
 		o.setEmail(email);
 		List<Contacto> contactos = new LinkedList<>();
-		contactos.add(new Contacto(MetodoContacto.call, "Interesado en un piso de 3 habitaciones",
+		contactos.add(new Contacto(MetodoContacto.CALL, "Interesado en un piso de 3 habitaciones",
 				new Date(System.currentTimeMillis() - 1), o));
 		o.setContactos(contactos);
 		try {

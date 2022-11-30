@@ -3,6 +3,7 @@ package com.crm.javaCRM.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -62,6 +63,16 @@ public class ContactoController {
 			return this.contactoService.editar(c, id);
 		} catch (Exception e) {
 			return e.getMessage();
+		}
+	}
+
+	@DeleteMapping("/contactos/{id}")
+	String borrarContacto(@PathVariable Integer id) {
+		try {
+			this.contactoService.delete(id);
+			return "Borrado completado";
+		} catch (Exception e) {
+			return "Hubo un problema";
 		}
 	}
 
