@@ -90,4 +90,56 @@ public class JavaCrmApplicationContactoTest {
 		assertEquals(null, contacto);
 	}
 
+	@Test
+	void actualizarContactoPass() {
+		Contacto contacto = null;
+		try {
+			Contacto original = this.contactoService.listOne(2);
+			original.setMotivo("Actualizacion estoy aburrido");
+			contacto = this.contactoService.editar(original, 1);
+		} catch (Exception e) {
+
+		}
+		assertEquals("Actualizacion estoy aburrido", contacto.getMotivo());
+
+	}
+
+	@Test
+	void actualizarContactoMetodoNullFail() {
+		Contacto contacto = null;
+		try {
+			Contacto original = this.contactoService.listOne(2);
+			original.setMetodo(null);
+			contacto = this.contactoService.editar(original, 1);
+		} catch (Exception e) {
+
+		}
+		assertEquals(null, contacto);
+	}
+
+	@Test
+	void actualizarContactoMotivoEmptyFail() {
+		Contacto contacto = null;
+		try {
+			Contacto original = this.contactoService.listOne(2);
+			original.setMotivo("");
+			contacto = this.contactoService.editar(original, 1);
+		} catch (Exception e) {
+
+		}
+		assertEquals(null, contacto);
+	}
+
+	@Test
+	void actualizarContactoPersonaWrongFail() {
+		Contacto contacto = null;
+		try {
+			Contacto original = this.contactoService.listOne(2);
+			contacto = this.contactoService.editar(original, null);
+		} catch (Exception e) {
+
+		}
+		assertEquals(null, contacto);
+	}
+
 }

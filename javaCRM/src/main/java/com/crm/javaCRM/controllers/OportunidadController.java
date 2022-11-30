@@ -28,8 +28,7 @@ public class OportunidadController {
 	 */
 	@GetMapping("/oportunidades")
 	List<Oportunidad> listado() {
-		List<Oportunidad> opList = oportunidadService.list();
-		return opList;
+		return oportunidadService.list();
 	}
 
 	/**
@@ -60,8 +59,7 @@ public class OportunidadController {
 	@PostMapping("/oportunidades")
 	Object nuevaOportunidad(@RequestBody Oportunidad nuevaOportunidad) {
 		try {
-			Oportunidad creada = this.oportunidadService.crearOportunidad(nuevaOportunidad);
-			return creada;
+			return this.oportunidadService.crearOportunidad(nuevaOportunidad);
 		} catch (IllegalArgumentException i) {
 			return i.getMessage();
 		}
@@ -75,11 +73,10 @@ public class OportunidadController {
 	 * @return la oportunidad actualizada o un mensaje de error si se produce algún
 	 *         fallo
 	 */
-	@PutMapping("/oportunidades/{id}")
-	Object actualizarOportunidad(@RequestBody Oportunidad nuevaOportunidad, @PathVariable Integer id) {
+	@PutMapping("/oportunidades")
+	Object actualizarOportunidad(@RequestBody Oportunidad nuevaOportunidad) {
 		try {
-			Oportunidad editada = this.oportunidadService.editar(nuevaOportunidad);
-			return editada;
+			return this.oportunidadService.editar(nuevaOportunidad);
 		} catch (Exception e) {
 			return e.getMessage();
 		}

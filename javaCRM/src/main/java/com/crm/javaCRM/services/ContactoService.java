@@ -87,4 +87,25 @@ public class ContactoService {
 		return this.contactoRepository.save(contacto);
 	}
 
+	/**
+	 * Método para actualizar los contactos
+	 * 
+	 * @param actualizado contacto nuevo modificado
+	 * @param personId    ID de la persona a la que pertenece el contacto
+	 */
+	public Contacto editar(Contacto actualizado, Integer personId) {
+		// Comprobaciones acerca del contacto general
+		Assert.notNull(actualizado, "El Contacto no existe");
+		Optional<Contacto> original = this.contactoRepository.findById(actualizado.getId());
+		Assert.isTrue(original.isPresent(), "No existe dicho contacto");
+		Contacto editado = null;
+		// Comprobación de la persona pasada por ID
+		Assert.notNull(personId, "No existe la persona asociada a este contacto");
+		Optional<Persona> persona = this.personaRepository.findById(personId);
+		Assert.isTrue(persona.isPresent(), "No existe dicho contacto");
+		actualizado.setPersona(persona.get());
+		editado = this.contactoRepository.save(actualizado);
+		return editado;
+	}
+
 }

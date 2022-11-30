@@ -28,8 +28,7 @@ public class ClienteController {
 	 */
 	@GetMapping("/clientes")
 	List<Cliente> listado() {
-		List<Cliente> clList = clienteService.list();
-		return clList;
+		return clienteService.list();
 	}
 
 	/**
@@ -58,8 +57,7 @@ public class ClienteController {
 	@PostMapping("/clientes")
 	Object nuevoCliente(@RequestBody Cliente nuevoCliente) {
 		try {
-			Cliente creada = this.clienteService.crearCliente(nuevoCliente);
-			return creada;
+			return this.clienteService.crearCliente(nuevoCliente);
 		} catch (IllegalArgumentException i) {
 			return i.getMessage();
 		}
@@ -73,11 +71,10 @@ public class ClienteController {
 	 * @return la oportunidad actualizada o un mensaje de error si se produce algún
 	 *         fallo
 	 */
-	@PutMapping("/clientes/{id}")
-	Object actualizarOportunidad(@RequestBody Cliente nuevoCliente, @PathVariable Integer id) {
+	@PutMapping("/clientes")
+	Object actualizarOportunidad(@RequestBody Cliente nuevoCliente) {
 		try {
-			Cliente editado = this.clienteService.editar(nuevoCliente);
-			return editado;
+			return this.clienteService.editar(nuevoCliente);
 		} catch (Exception e) {
 			return e.getMessage();
 		}

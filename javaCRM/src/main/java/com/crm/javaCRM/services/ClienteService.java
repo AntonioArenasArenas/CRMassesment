@@ -70,16 +70,17 @@ public class ClienteService {
 		String telefono = c.getTelefono();
 		String dni = c.getDni();
 		List<Cliente> obbdd;
+		String problema = "Este usuario ya está en la base de datos!";
 		if (email != null) {
 			obbdd = clienteRepository.findByEmail(email);
-			Assert.isTrue(obbdd.isEmpty(), "Este usuario ya está en la base de datos!");
+			Assert.isTrue(obbdd.isEmpty(), problema);
 		}
 		if (telefono != null) {
 			obbdd = clienteRepository.findByTelefono(telefono);
-			Assert.isTrue(obbdd.isEmpty(), "Este usuario ya está en la base de datos!");
+			Assert.isTrue(obbdd.isEmpty(), problema);
 		}
 		obbdd = clienteRepository.findByDni(dni);
-		Assert.isTrue(obbdd.isEmpty(), "Este usuario ya está en la base de datos!");
+		Assert.isTrue(obbdd.isEmpty(), problema);
 		if (c.getContactos() == null) {
 			c.setContactos(new LinkedList<>());
 		}

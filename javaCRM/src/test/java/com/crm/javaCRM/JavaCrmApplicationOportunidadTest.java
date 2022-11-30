@@ -34,7 +34,7 @@ class JavaCrmApplicationOportunidadTest {
 	void listOportunidadWrongIdFail() {
 		try {
 			String name = this.oportunidadService.listOne(16).getNombre();
-			assertEquals(name, "Antonio Arenas Arenas");
+			assertEquals("Antonio Arenas Arenas", name);
 		} catch (IllegalArgumentException e) {
 			assertEquals("No existe una oportunidad con ese ID", e.getMessage());
 		}
@@ -211,26 +211,26 @@ class JavaCrmApplicationOportunidadTest {
 	}
 
 	// Los métodos de borrado pueden falsear el resultado por lo que deben
-	// ejecutarse individualmente
-	@Test
-	void borrarOportunidadPass() {
-		try {
-			this.oportunidadService.delete(1);
-		} catch (Exception e) {
+		// ejecutarse individualmente
+		@Test
+		void borrarOportunidadPass() {
+			try {
+				this.oportunidadService.delete(1);
+			} catch (Exception e) {
 
+			}
+			assertEquals(3, this.oportunidadService.list().size());
 		}
-		assertEquals(3, this.oportunidadService.list().size());
-	}
 
-	@Test
-	void borrarOportunidadIdNotExistFail() {
-		try {
-			this.oportunidadService.delete(50);
-		} catch (Exception e) {
+		@Test
+		void borrarOportunidadIdNotExistFail() {
+			try {
+				this.oportunidadService.delete(50);
+			} catch (Exception e) {
 
+			}
+			assertEquals(4, this.oportunidadService.list().size());
 		}
-		assertEquals(4, this.oportunidadService.list().size());
-	}
 
 	// TODO metodo login
 }

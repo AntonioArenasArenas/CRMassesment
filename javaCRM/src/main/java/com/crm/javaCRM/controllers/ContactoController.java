@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,8 +27,7 @@ public class ContactoController {
 	 */
 	@GetMapping("/contactos")
 	List<Contacto> listado() {
-		List<Contacto> clList = contactoService.list();
-		return clList;
+		return contactoService.list();
 	}
 
 	/**
@@ -50,10 +50,19 @@ public class ContactoController {
 	@PostMapping("/contactos/{id}")
 	Object crearContacto(@PathVariable Integer id, @RequestBody Contacto c) {
 		try {
-			Contacto creado = this.contactoService.crearContacto(c, id);
-			return creado;
+			return this.contactoService.crearContacto(c, id);
 		} catch (IllegalArgumentException e) {
 			return e.getMessage();
 		}
 	}
+
+	@PutMapping("/contactos/{id}")
+	Object actualizarContacto(@PathVariable Integer id, @RequestBody Contacto c) {
+		try {
+			return this.contactoService.editar(c, id);
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
+
 }

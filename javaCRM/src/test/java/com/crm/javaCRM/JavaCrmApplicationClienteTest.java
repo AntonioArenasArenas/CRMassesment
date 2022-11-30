@@ -36,7 +36,7 @@ class JavaCrmApplicationClienteTest {
 	void listClienteWrongIdFail() {
 		try {
 			String name = this.clienteService.listOne(16).getNombre();
-			assertEquals(name, "Pepe");
+			assertEquals("Pepe", name);
 		} catch (IllegalArgumentException e) {
 			assertEquals("No existe un cliente con ese ID", e.getMessage());
 		}
@@ -91,7 +91,7 @@ class JavaCrmApplicationClienteTest {
 			creada = clienteService.crearCliente(c);
 
 		} catch (IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "Este usuario ya está en la base de datos!");
+			assertEquals("Este usuario ya está en la base de datos!", e.getMessage());
 		}
 		assertEquals(null, creada);
 	}
@@ -114,7 +114,7 @@ class JavaCrmApplicationClienteTest {
 			creada = clienteService.crearCliente(c);
 
 		} catch (IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "Este usuario ya está en la base de datos!");
+			assertEquals("Este usuario ya está en la base de datos!", e.getMessage());
 		}
 		assertEquals(null, creada);
 	}
@@ -137,7 +137,7 @@ class JavaCrmApplicationClienteTest {
 			creada = clienteService.crearCliente(c);
 
 		} catch (IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "El cliente no tiene nombre!");
+			assertEquals("El cliente no tiene nombre!", e.getMessage());
 		}
 		assertEquals(null, creada);
 	}
@@ -160,7 +160,7 @@ class JavaCrmApplicationClienteTest {
 			creada = clienteService.crearCliente(c);
 
 		} catch (IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "Este usuario ya está en la base de datos!");
+			assertEquals("Este usuario ya está en la base de datos!", e.getMessage());
 		}
 		assertEquals(null, creada);
 	}
@@ -183,7 +183,7 @@ class JavaCrmApplicationClienteTest {
 			creada = clienteService.crearCliente(c);
 
 		} catch (IllegalArgumentException e) {
-			assertEquals(e.getMessage(), "El cliente no tiene DNI!");
+			assertEquals("El cliente no tiene DNI!", e.getMessage());
 		}
 		assertEquals(null, creada);
 	}
