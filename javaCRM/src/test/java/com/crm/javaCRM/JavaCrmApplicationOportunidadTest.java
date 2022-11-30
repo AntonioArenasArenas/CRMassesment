@@ -211,26 +211,27 @@ class JavaCrmApplicationOportunidadTest {
 	}
 
 	// Los métodos de borrado pueden falsear el resultado por lo que deben
-		// ejecutarse individualmente
-		@Test
-		void borrarOportunidadPass() {
-			try {
-				this.oportunidadService.delete(1);
-			} catch (Exception e) {
+	// ejecutarse individualmente
+	@Test
+	void borrarOportunidadPass() {
+		try {
+			this.oportunidadService.delete(1);
+		} catch (Exception e) {
 
-			}
-			assertEquals(3, this.oportunidadService.list().size());
 		}
+		assertEquals(3, this.oportunidadService.list().size());
+	}
 
-		@Test
-		void borrarOportunidadIdNotExistFail() {
-			try {
-				this.oportunidadService.delete(50);
-			} catch (Exception e) {
+	@Test
+	void borrarOportunidadIdNotExistFail() {
+		try {
+			this.oportunidadService.delete(50);
+		} catch (Exception e) {
 
-			}
-			assertEquals(4, this.oportunidadService.list().size());
 		}
+		assertEquals(4, this.oportunidadService.list().size());
+	}
 
+	// TODO hacer test de borrar contactos al borrar oportunidad
 	// TODO metodo login
 }

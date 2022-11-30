@@ -18,6 +18,7 @@ import com.crm.javaCRM.model.Cliente;
 import com.crm.javaCRM.model.Contacto;
 import com.crm.javaCRM.model.MetodoContacto;
 import com.crm.javaCRM.services.ClienteService;
+import com.crm.javaCRM.services.ContactoService;
 import com.crm.javaCRM.services.OportunidadService;
 
 @SpringBootTest
@@ -25,6 +26,9 @@ class JavaCrmApplicationClienteTest {
 
 	@Autowired
 	ClienteService clienteService;
+
+	@Autowired
+	ContactoService contactoService;
 
 	@Autowired
 	OportunidadService oportunidadService;
@@ -321,6 +325,22 @@ class JavaCrmApplicationClienteTest {
 
 		}
 		assertNull(creado);
+	}
+
+	@Test
+	void borrarClienteYContactosPass() {
+		try {
+			this.clienteService.delete(5);
+		} catch (Exception e) {
+
+		}
+		assertEquals(3, this.clienteService.list().size());
+		assertEquals(10, this.contactoService.list().size());
+	}
+
+	@Test
+	void borrarClienteYContactosFail() {
+
 	}
 
 }

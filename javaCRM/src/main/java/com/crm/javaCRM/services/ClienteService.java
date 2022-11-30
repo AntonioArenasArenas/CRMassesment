@@ -149,7 +149,6 @@ public class ClienteService {
 		Optional<Cliente> op = this.clienteRepository.findById(c.getId());
 		Assert.isTrue(op.isPresent(), "No existe el id");
 		Cliente editado = null;
-		// TODO recorrer todos los contactos y guardarlos
 		editado = this.clienteRepository.save(c);
 		return editado;
 	}
@@ -164,7 +163,9 @@ public class ClienteService {
 
 		Optional<Cliente> op = this.clienteRepository.findById(id);
 		Assert.isTrue(op.isPresent(), "No existe el id");
-		// TODO borrar todos los contactos??
+		for (Contacto c : op.get().getContactos()) {
+			this.contactoService.delete(c.getId());
+		}
 		this.clienteRepository.deleteById(id);
 	}
 

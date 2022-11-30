@@ -153,6 +153,8 @@ public class JavaCrmApplicationContactoTest {
 
 		}
 		assertEquals(9, this.contactoService.list().size());
+
+		// TODO hacer assert correspondiente
 	}
 
 	@Test
@@ -163,5 +165,6 @@ public class JavaCrmApplicationContactoTest {
 
 		}
 		assertEquals(10, this.contactoService.list().size());
+		// TODO Hacer assert correspondiente
 	}
 }

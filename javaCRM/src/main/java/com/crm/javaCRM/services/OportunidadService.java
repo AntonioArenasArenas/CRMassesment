@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import com.crm.javaCRM.model.Contacto;
 import com.crm.javaCRM.model.Oportunidad;
 import com.crm.javaCRM.repositories.OportunidadRepository;
 
@@ -18,6 +19,9 @@ public class OportunidadService {
 
 	@Autowired
 	private OportunidadRepository oportunidadRepository;
+
+	@Autowired
+	private ContactoService contactoService;
 
 	// Metodos CRUD
 
@@ -81,7 +85,6 @@ public class OportunidadService {
 			o.setContactos(new LinkedList<>());
 		}
 		creada = oportunidadRepository.save(o);
-		// TODO guardar los contactos
 		return creada;
 	}
 
@@ -98,7 +101,6 @@ public class OportunidadService {
 		Assert.isTrue(op.isPresent(), "No existe el id");
 		Oportunidad editada = null;
 		editada = this.oportunidadRepository.save(o);
-		// TODO recorrer lista de contactos y guardar los nuevos
 		return editada;
 	}
 
@@ -112,7 +114,9 @@ public class OportunidadService {
 
 		Optional<Oportunidad> op = this.oportunidadRepository.findById(id);
 		Assert.isTrue(op.isPresent(), "No existe el id");
-		// TODO borrar todos los contactos??
+		for (Contacto c : op.get().getContactos()) {
+			this.contactoService.delete(c.getId());
+		}
 		this.oportunidadRepository.deleteById(id);
 	}
 
