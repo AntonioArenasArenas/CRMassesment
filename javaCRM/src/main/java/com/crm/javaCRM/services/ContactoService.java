@@ -108,4 +108,15 @@ public class ContactoService {
 		return editado;
 	}
 
+	/**
+	 * Método para borrar contactos
+	 * 
+	 * @param id ID del contacto a borrar
+	 */
+	public void delete(Integer id) {
+
+		Assert.isTrue(this.contactoRepository.findById(id).isPresent(), "No existe el ID");
+		this.contactoRepository.deleteById(id);
+	}
+
 }

@@ -142,6 +142,9 @@ public class JavaCrmApplicationContactoTest {
 		assertEquals(null, contacto);
 	}
 
+	// Los test de borrado pueden falsear el resultado por lo que se deben ejecutar
+	// individualmente
+
 	@Test
 	void borrarContactoPass() {
 		try {
