@@ -120,9 +120,19 @@ public class ClienteService {
 		return editado;
 	}
 
-	public void delete(int i) {
-		// TODO Auto-generated method stub
-		
+	/**
+	 * Método para el borrado de un cliente a partir de su id
+	 * 
+	 * @param id ID del cliente que debe ser borrado
+	 * @exception IllegalArgumentException si no existe el ID en cuestión
+	 */
+	public void delete(Integer id) {
+
+		Optional<Cliente> op = this.clienteRepository.findById(id);
+		Assert.isTrue(op.isPresent(), "No existe el id");
+		// TODO borrar todos los contactos??
+		this.clienteRepository.deleteById(id);
+
 	}
 
 }

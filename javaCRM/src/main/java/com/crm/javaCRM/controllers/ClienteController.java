@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.crm.javaCRM.model.Cliente;
-import com.crm.javaCRM.model.Oportunidad;
 import com.crm.javaCRM.services.ClienteService;
 
 /** Controlador de Oportunidad con los métodos CRUD */
@@ -83,20 +82,20 @@ public class ClienteController {
 			return e.getMessage();
 		}
 	}
-//
-//	/**
-//	 * Método que controla el borrado de una oportunidad según su ID
-//	 * 
-//	 * @param id ID de la oportunidad a borrar
-//	 * @return Un mensaje mostrando si se ha realizado correctamente o no el borrado
-//	 */
-//	@DeleteMapping("/oportunidades/{id}")
-//	String deleteEmployee(@PathVariable Integer id) {
-//		try {
-//			this.oportunidadService.delete(id);
-//			return "Borrado completado";
-//		} catch (Exception e) {
-//			return "Hubo un problema";
-//		}
-//	}
+
+	/**
+	 * Método que controla el borrado de un cliente según su ID
+	 * 
+	 * @param id ID del cliente a borrar
+	 * @return Un mensaje mostrando si se ha realizado correctamente o no el borrado
+	 */
+	@DeleteMapping("/clientes/{id}")
+	String deleteEmployee(@PathVariable Integer id) {
+		try {
+			this.clienteService.delete(id);
+			return "Borrado completado";
+		} catch (Exception e) {
+			return "Hubo un problema";
+		}
+	}
 }
