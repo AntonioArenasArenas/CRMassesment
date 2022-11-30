@@ -90,7 +90,7 @@ public class DatosCommandLineRunner implements CommandLineRunner {
 		op3.setDireccion("Calle Tharsis 26");
 		op3.setContactos(new LinkedList<>());
 		Contacto c8 = new Contacto(MetodoContacto.SALE_VISIT, "Visita un estudio cerca del centro",
-				df.parse("13/06/22"), op3);
+				df.parse("13/09/22"), op3);
 		Contacto c9 = new Contacto(MetodoContacto.SALE_VISIT, "Visita un estudio cerca de la alameda",
 				df.parse("04/10/22"), op3);
 		op3.getContactos().add(c8);
@@ -104,8 +104,8 @@ public class DatosCommandLineRunner implements CommandLineRunner {
 		Oportunidad op4 = new Oportunidad();
 		op4.setNombre("Antonio Manuel Díaz Arenas");
 		op4.setContactos(new LinkedList<>());
-		Contacto c10 = new Contacto(MetodoContacto.SALE_VISIT, "Visita un estudio cerca del centro",
-				df.parse("13/06/22"), op4);
+		Contacto c10 = new Contacto(MetodoContacto.SALE_VISIT, "Visita un estudio cerca de la alameda",
+				df.parse("13/08/22"), op4);
 		op4.getContactos().add(c10);
 		this.repository.save(op4);
 		this.crepository.save(c10);
@@ -118,8 +118,8 @@ public class DatosCommandLineRunner implements CommandLineRunner {
 		productos.add("Casa en venta en calle Arroyo, Sevilla");
 		productos.add("Terrenos comprados en las afueras de Paterna del Campo, Huelva");
 		Cliente cliente1 = new Cliente("78965214E", 45, productos);
-		Contacto c11 = new Contacto(MetodoContacto.SALE_VISIT, "Visita un estudio cerca del centro",
-				df.parse("13/06/22"), cliente1);
+		Contacto c11 = new Contacto(MetodoContacto.SALE_VISIT, "Visita un piso cerca del barrio de nervión",
+				df.parse("13/07/22"), cliente1);
 		cliente1.setContactos(new LinkedList<>());
 		cliente1.setNombre("Pepe");
 		cliente1.setDireccion("Calle cualquiera");

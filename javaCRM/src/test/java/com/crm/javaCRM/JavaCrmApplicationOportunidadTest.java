@@ -257,5 +257,20 @@ class JavaCrmApplicationOportunidadTest {
 		assertEquals(4, this.oportunidadService.list().size());
 		assertEquals(11, this.contactoService.list().size());
 	}
-	// TODO metodo login
+
+	@Test
+	void loginPass() {
+
+		List<Oportunidad> listaInicio = null;
+		listaInicio = this.oportunidadService.login("username", "password");
+		assertEquals(4, listaInicio.size());
+	}
+
+	@Test
+	void loginFail() {
+		List<Oportunidad> listaInicio = null;
+		listaInicio = this.oportunidadService.login("usernames", "password");
+		assertEquals(null, listaInicio);
+	}
+
 }
