@@ -81,6 +81,7 @@ public class OportunidadService {
 			o.setContactos(new LinkedList<>());
 		}
 		creada = oportunidadRepository.save(o);
+		// TODO guardar los contactos
 		return creada;
 	}
 
@@ -97,6 +98,7 @@ public class OportunidadService {
 		Assert.isTrue(op.isPresent(), "No existe el id");
 		Oportunidad editada = null;
 		editada = this.oportunidadRepository.save(o);
+		// TODO recorrer lista de contactos y guardar los nuevos
 		return editada;
 	}
 

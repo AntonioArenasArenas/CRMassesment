@@ -116,6 +116,7 @@ public class ClienteService {
 		Optional<Cliente> op = this.clienteRepository.findById(c.getId());
 		Assert.isTrue(op.isPresent(), "No existe el id");
 		Cliente editado = null;
+		// TODO recorrer todos los contactos y guardarlos
 		editado = this.clienteRepository.save(c);
 		return editado;
 	}
