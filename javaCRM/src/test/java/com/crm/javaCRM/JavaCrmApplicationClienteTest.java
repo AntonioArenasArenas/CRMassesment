@@ -270,26 +270,25 @@ class JavaCrmApplicationClienteTest {
 		assertEquals(editado, null);
 	}
 
-//
-//	// Los métodos de borrado pueden falsear el resultado por lo que deben
-//	// ejecutarse individualmente
-//	@Test
-//	void borrarOportunidadPass() {
-//		try {
-//			this.oportunidadService.delete(1);
-//		} catch (Exception e) {
-//
-//		}
-//		assertEquals(this.oportunidadService.list().size(), 3);
-//	}
-//
-//	@Test
-//	void borrarOportunidadIdNotExistFail() {
-//		try {
-//			this.oportunidadService.delete(50);
-//		} catch (Exception e) {
-//
-//		}
-//		assertEquals(this.oportunidadService.list().size(), 4);
-//	}
+	// Los métodos de borrado pueden falsear el resultado por lo que deben
+	// ejecutarse individualmente
+	@Test
+	void borrarClientePass() {
+		try {
+			this.clienteService.delete(5);
+		} catch (Exception e) {
+
+		}
+		assertEquals(this.clienteService.list().size(), 3);
+	}
+
+	@Test
+	void borrarOportunidadIdNotExistFail() {
+		try {
+			this.clienteService.delete(50);
+		} catch (Exception e) {
+
+		}
+		assertEquals(this.clienteService.list().size(), 4);
+	}
 }

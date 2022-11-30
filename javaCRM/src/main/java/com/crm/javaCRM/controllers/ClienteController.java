@@ -65,24 +65,24 @@ public class ClienteController {
 			return i.getMessage();
 		}
 	}
-//
-//	/**
-//	 * Método para modificar una oportunidad según su ID
-//	 * 
-//	 * @param nuevaOportunidad la oportunidad con los datos actualizados
-//	 * @param id               el id de la oportunidad que queremos actualizar
-//	 * @return la oportunidad actualizada o un mensaje de error si se produce algún
-//	 *         fallo
-//	 */
-//	@PutMapping("/oportunidades/{id}")
-//	Object actualizarOportunidad(@RequestBody Oportunidad nuevaOportunidad, @PathVariable Integer id) {
-//		try {
-//			Oportunidad editada = this.oportunidadService.editar(nuevaOportunidad);
-//			return editada;
-//		} catch (Exception e) {
-//			return e.getMessage();
-//		}
-//	}
+
+	/**
+	 * Método para modificar un cliente según su ID
+	 * 
+	 * @param nuevaOportunidad la oportunidad con los datos actualizados
+	 * @param id               el id de la oportunidad que queremos actualizar
+	 * @return la oportunidad actualizada o un mensaje de error si se produce algún
+	 *         fallo
+	 */
+	@PutMapping("/clientes/{id}")
+	Object actualizarOportunidad(@RequestBody Cliente nuevoCliente, @PathVariable Integer id) {
+		try {
+			Cliente editado = this.clienteService.editar(nuevoCliente);
+			return editado;
+		} catch (Exception e) {
+			return e.getMessage();
+		}
+	}
 //
 //	/**
 //	 * Método que controla el borrado de una oportunidad según su ID

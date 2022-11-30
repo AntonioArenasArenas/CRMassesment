@@ -120,4 +120,9 @@ public class ClienteService {
 		return editado;
 	}
 
+	public void delete(int i) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
